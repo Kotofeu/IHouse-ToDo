@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul,
+ol{
+  padding: 0;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: $primary-color-light;
+  background: -webkit-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
+  background: -moz-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
+  background: linear-gradient(180deg, $primary-color-light, $primary-color-dark);
+  background-attachment: fixed;
+  background-position: center;
+  font-family: 'Open Sans';
+  font-weight: 400;
+}
+body, html {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+}
+ul[class],
+ol[class] {
+  list-style: none;
+}
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+a{
+  text-decoration: none;
+  font: inherit;
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  line-height: inherit;
+  margin: 0;
+}

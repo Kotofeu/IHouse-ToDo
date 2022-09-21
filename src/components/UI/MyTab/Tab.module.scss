@@ -1,0 +1,19 @@
+.MyTab{
+    border: 2px solid #8587ad;
+    background-color: #e8e8fc;
+    font-size: 18px;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    color: #000;
+    border-radius: 30px;
+    min-height: 40px;
+    display: inline;
+    padding: 8px 22px;
+    cursor: pointer;
+    transition: .3s;
+    &:hover{
+        border: 2px solid #2b5363;
+        background-color: #2b5363;
+        color: #fff;
+    }
+}

@@ -1,0 +1,110 @@
+$primary: #1F3F4C;
+$secondary: rgb(7, 83, 32);
+$white: #fff;
+$gray: #e8e8fc;
+
+.input-form {
+    position: relative;
+    padding: 15px 0 0;
+}
+
+.input-form__input {
+    font-family: inherit;
+    border: 0;
+    border-bottom: 2px solid $gray;
+    outline: 0;
+    font-size: 20px;
+    padding: 7px 0;
+    padding-right: 50px;
+    background: transparent;
+    transition: border-color, color 0.2s;
+    color: $white;
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown~.input-form__label {
+        font-size: 20px;
+        cursor: text;
+        top: 20px;
+    }
+}
+
+.input-form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 13px;
+    font-weight: 600;
+    color: $gray;
+}
+
+.input-form__button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-35%);
+    background: none;
+    border: none;
+    padding: 10px;
+
+    & img {
+        transition: transform .3s;
+
+    }
+
+    &:hover img {
+        transform: scaleX(-1);
+    }
+
+    &:active img {
+        transform: scale(-.8, .8);
+    }
+}
+
+.input-form__input:focus {
+    ~.input-form__label {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 13px;
+        color: $primary;
+        font-weight: 600;
+    }
+
+    ~.input-form__button img {
+        transform: scaleX(-1);
+
+    }
+
+    color: #000;
+    border-image: linear-gradient(to right, $primary, $secondary);
+    border-image-slice: 1;
+}
+
+.input-form__input {
+
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border-image: linear-gradient(to right, $primary, $secondary);
+    border-image-slice: 1;
+    -webkit-text-fill-color: #1F3F4C;
+    -webkit-box-shadow: 0 0 0px 1000px none inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
