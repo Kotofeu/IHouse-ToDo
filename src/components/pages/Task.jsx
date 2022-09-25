@@ -63,7 +63,10 @@ export default function Task() {
     useEffect(() => {
         localStorage.setItem('isHorizontal', isHorizontal ? 'True' : '')
     }, [isHorizontal])
+    useEffect(() => {
+        document.title = 'Список задач';
 
+    })
     const setAlignment = () => {
         setIsHorizontal(!isHorizontal)
     }

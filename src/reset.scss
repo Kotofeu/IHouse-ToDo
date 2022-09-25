@@ -26,7 +26,7 @@ dl,
 dd {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size:inherit;
 }
 body {
   min-height: 100vh;
@@ -36,7 +36,7 @@ body {
   background-color: $primary-color-light;
   background: -webkit-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
   background: -moz-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
-  background: linear-gradient(180deg, $primary-color-light, $primary-color-dark);
+  background: linear-gradient(180deg, $primary-color-light, $primary-color-dark); 
   background-attachment: fixed;
   background-position: center;
   font-family: 'Open Sans';

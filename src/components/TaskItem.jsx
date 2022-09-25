@@ -11,7 +11,7 @@ export default function TaskItem({ text }) {
     const textRef = useRef(null)
     const containerRef = useRef(null)
     const Expand = () => {
-        setEditActive(!editActive)
+        setEditActive((prevState) => !prevState)
     }
     useEffect(() => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth))

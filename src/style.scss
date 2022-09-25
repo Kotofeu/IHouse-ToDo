@@ -79,8 +79,8 @@ main {
 }
 
 .task {
-    min-height: 100vh;
     &__inner {
+        min-height: 100vh;
         padding: 90px 0 30px;
         height: 100%;
         overflow-x: hidden;
@@ -246,8 +246,6 @@ main {
             text-overflow: clip;
             white-space: normal;
             word-break: break-all;
-            
-
         }
     }
 
@@ -279,10 +277,62 @@ main {
         color: $header-color;
     }
 }
-.contact{
-    min-height: 100vh;
 
+.contact {
+    padding: 90px 0 30px;
+
+    &__inner {
+        height: 100%;
+        width: 100%;
+        background-color: $block-color;
+        border-radius: 30px;
+        padding: 40px;
+    }
+
+    &__header {
+        width: 100%;
+        border-bottom: 2px solid $header-color;
+    }
+
+    &__contact-table {
+        margin-top: 20px;
+
+    }
+    &__contact-tbody {
+
+    }
+    &__contact-thead{
+        font-weight: 600;
+        background-color: $item-color;
+
+    }
+    &__contact-row {
+        display: flex;
+        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 2fr;
+    }
+
+    &__contact-item{
+        font-size: 17px;
+        text-align: left;
+        padding: 10px;
+        border: 1px #1F3F4C solid;
+        word-break: break-all;
+        overflow: hidden;
+        & a{
+            display: block;
+            &:hover{
+                text-decoration:underline;
+            }
+        }
+        &:first-child{
+            word-break: normal;
+            text-overflow:ellipsis;
+        }
+    }
 }
+
 .archive{
     min-height: 100vh;
 

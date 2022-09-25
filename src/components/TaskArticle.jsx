@@ -4,12 +4,10 @@ import MyEddBtn from './UI/MyEddBtn/MyEddBtn'
 import MyTextArea from './UI/MyTextArea/MyTextArea'
 export default function TaskArticle({ title, tasks, reference, className }) {
   //console.log('Article')
+  const rootClasses = ['task__article', className]
+
   const [inputvalue, setInputvalue] = useState('')
   const [tasksList, setTasksList] = useState(tasks)
-  const rootClasses = ['task__article', className]
-  const setValue = e => {
-    setInputvalue(e.target.value)
-  }
 
   const eddClick = () => {
     if(!(tasksList.find(item => item.text === inputvalue)) && inputvalue){
@@ -33,8 +31,8 @@ export default function TaskArticle({ title, tasks, reference, className }) {
         <form className='task__article-header-add' onSubmit={e => e.preventDefault()}>
           <MyTextArea className='task__article-header-input'
             inputvalue={inputvalue}
-            setValue={setValue}
-            placeholder='Добавить задачу' />
+            setValue={e => setInputvalue(e.target.value)}
+            placeholder='Добавить заметку' />
           <MyEddBtn className='task__article-header-btn' eddClick={eddClick}></MyEddBtn>
         </form>
       </header>

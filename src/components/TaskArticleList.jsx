@@ -17,7 +17,7 @@ export default function TaskArticleList({ task, isHorizontal, setTask }) {
     const eddTaskList = e => {
         e.preventDefault()
         if (!(task.find(item => item.name === newList)) && newList) {
-            setTask([...task, {
+            setTask((prevState) => [...prevState, {
                 name: newList,
                 content: []
             }])
