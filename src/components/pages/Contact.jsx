@@ -71,7 +71,7 @@ export default function Contact() {
                   </div>
                   <div className='contact__contact-item' >
                     <a className='contact__contact-mail' href={`mailto:${item.person.mail}`}>
-                      {item.person.mail}
+                      {item.person.mail} 
                     </a>
                   </div>
                 </li>
