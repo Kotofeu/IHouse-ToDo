@@ -7,7 +7,7 @@ import expand from '../assets/images/expand.svg'
 export default function TaskItem({ text }) {
     ///console.log('Item')
     const [editActive, setEditActive] = useState(false)
-    const [width, setWidth] = useState(1)
+    const [width, setWidth] = useState()
     const textRef = useRef(null)
     const containerRef = useRef(null)
     const Expand = () => {
@@ -15,7 +15,7 @@ export default function TaskItem({ text }) {
     }
     useEffect(() => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth))
-    }, [])
+    }, [containerRef?.current?.offsetWidth])
     const Delete = () => {
 
     }
@@ -23,11 +23,13 @@ export default function TaskItem({ text }) {
         <div className='task__item'>
             <div className='task__item-content' ref={containerRef}>
                 <p className={`task__item-text 
-                ${editActive
-                    ? 'task__item-text--active'
-                    : ''
-                }`}
-                    ref={textRef}>{text}</p>
+                    ${editActive
+                        ? 'task__item-text--active'
+                        : ''
+                    }`}
+                    ref={textRef}>
+                    {text}
+                </p>
             </div>
 
             <div className='task__item-buttons'>

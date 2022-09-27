@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TaskItemListMemo } from './TaskItemList'
-import MyEddBtn from './UI/MyEddBtn/MyEddBtn'
+import MyAddBtn from './UI/MyAddBtn/MyAddBtn'
 import MyTextArea from './UI/MyTextArea/MyTextArea'
 export default function TaskArticle({ title, tasks, reference, className }) {
   //console.log('Article')
@@ -33,7 +33,7 @@ export default function TaskArticle({ title, tasks, reference, className }) {
             inputvalue={inputvalue}
             setValue={e => setInputvalue(e.target.value)}
             placeholder='Добавить заметку' />
-          <MyEddBtn className='task__article-header-btn' eddClick={eddClick}></MyEddBtn>
+          <MyAddBtn className='task__article-header-btn' eddClick={eddClick}></MyAddBtn>
         </form>
       </header>
       <TaskItemListMemo props={tasksList} />

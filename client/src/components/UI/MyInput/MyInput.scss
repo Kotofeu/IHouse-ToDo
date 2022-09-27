@@ -1,6 +1,5 @@
 $primary: #1F3F4C;
 $secondary: rgb(7, 83, 32);
-$white: #fff;
 $gray: #e8e8fc;
 
 .input-form {
@@ -18,7 +17,7 @@ $gray: #e8e8fc;
     padding-right: 50px;
     background: transparent;
     transition: border-color, color 0.2s;
-    color: $white;
+    color: $gray;
 
     &::placeholder {
         color: transparent;

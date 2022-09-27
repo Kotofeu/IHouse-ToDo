@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import MyInput from '../UI/MyInput/MyInput.jsx'
+import MyTitle from '../UI/Title/MyTitle'
 
 export default function Contact() {
-  const personInfo = ['ФИО', 'Информация', 'Телефон', 'Почта']
+  const personInfo = ['ФИО', 'Информация', 'Телефон', 'Почта'];
   const [contact, setContact] = useState([
     {
       id: '1',
@@ -43,19 +45,47 @@ export default function Contact() {
       id: '4',
       person: { name: 'Лосева Диана Александровна', post: 'Строитель', phone: '8(911)563-55-62', mail: 'hovoufauppabra@mail.ru' }
     }
-  ])
+  ]);
+  const [personInput, setPersonInput] = useState({
+    addNewPerson: '',
+    findPerson: ''
+  });
   useEffect(() => {
     document.title = 'Контакты';
   })
+  const inputChange = (e) =>{
+    setPersonInput(prev => ({
+      ...prev, [e.target.id]:e.target.value
+    }))
+  }
   return (
     <div className='contact'>
       <div className='container'>
         <div className='contact__inner'>
           <header className='contact__header'>
+            <MyTitle>Список контактов
+            </MyTitle>
           </header>
+          <div className="contact-form">
+            <MyInput className='contact__form-add'
+              massege='Добавить человка'
+              id='addNewPerson'
+              value={personInput.addNewPerson}
+              onChange={inputChange}
+              onClick={() => null}
+            />
+            <MyInput className='contact__form-search'
+              massege='Поиск'
+              id='findPerson'
+              value={personInput.findPerson}
+              onChange={inputChange}
+              onClick={() => null}
+            />
+          </div>
+
           <section className='contact__contact-table'>
             <header className='contact__contact-thead contact__contact-row'>
-              {personInfo.map(property => 
+              {personInfo.map(property =>
                 <p className='contact__contact-item' key={property}>{property}</p>
               )}
             </header>
@@ -71,7 +101,7 @@ export default function Contact() {
                   </div>
                   <div className='contact__contact-item' >
                     <a className='contact__contact-mail' href={`mailto:${item.person.mail}`}>
-                      {item.person.mail} 
+                      {item.person.mail}
                     </a>
                   </div>
                 </li>
