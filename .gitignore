@@ -1,8 +1,10 @@
 # dependencies
 /client/node_modules
+/server/node_modules
 /.pnp
 .pnp.js
 /client/package-lock.json
+/server/package-lock.json
 # misc
 .DS_Store
 .env.local

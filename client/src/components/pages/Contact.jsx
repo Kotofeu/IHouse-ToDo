@@ -53,9 +53,15 @@ export default function Contact() {
   useEffect(() => {
     document.title = 'Контакты';
   })
-  const inputChange = (e) =>{
+  const formChange = e =>{
     setPersonInput(prev => ({
-      ...prev, [e.target.id]:e.target.value
+      ...prev, [e.target.name]:e.target.value
+    }))
+  }
+  const formInput = e =>{
+    e.preventDefault()
+    setPersonInput(prev => ({
+      ...prev, [e.target.name]:''
     }))
   }
   return (
@@ -71,15 +77,15 @@ export default function Contact() {
               massege='Добавить человка'
               id='addNewPerson'
               value={personInput.addNewPerson}
-              onChange={inputChange}
-              onClick={() => null}
+              onChange={formChange}
+              onClick={formInput}
             />
             <MyInput className='contact__form-search'
               massege='Поиск'
               id='findPerson'
               value={personInput.findPerson}
-              onChange={inputChange}
-              onClick={() => null}
+              onChange={formChange}
+              onClick={formInput}
             />
           </div>
 

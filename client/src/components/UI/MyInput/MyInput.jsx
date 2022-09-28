@@ -13,8 +13,8 @@ export default function MyInput({ className, massege, id, value, onChange, onCli
                 onChange={onChange}
                 required
                 autoComplete='off' />
-            <button className='input-form__button' onClick={onClick}>
-                <img src={enter} alt='enter icon' />
+            <button className='input-form__button' name={id} onClick={onClick}>
+                <img src={enter} alt='enter icon'/>
             </button>
             <label className='input-form__label' htmlFor={id} >{massege}</label>
         </form>)
