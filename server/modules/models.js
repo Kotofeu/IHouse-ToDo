@@ -1,7 +1,7 @@
 const sequelize = require('../db');
 const { DataTypes } = require('sequelize');
 
-const TodosList = sequelize.define('todos_list', {
+const TodosList = sequelize.define('todos_lists', {
     id:
     {
         type: DataTypes.INTEGER,
@@ -15,7 +15,7 @@ const TodosList = sequelize.define('todos_list', {
         allowNull: false
     }
 });
-const TodoItem = sequelize.define('todo_item', {
+const TodoItem = sequelize.define('todo_items', {
     id:
     {
         type: DataTypes.INTEGER,
@@ -64,7 +64,8 @@ const Contacts = sequelize.define('contacts', {
         unique: true
     }
 });
-const TodoWorker = sequelize.define('todo_worker', {
+/*
+const TodoWorker = sequelize.define('todo_workers', {
     id:
     {
         type: DataTypes.INTEGER,
@@ -72,20 +73,21 @@ const TodoWorker = sequelize.define('todo_worker', {
         autoIncrement: true
     }
 })
-
+*/
 TodosList.hasMany(TodoItem);
 TodoItem.belongsTo(TodosList);
 
 
-TodosList.hasMany(Workers);
-Workers.belongsTo(TodosList);
-
+Workers.hasMany(TodosList);
+TodosList.belongsTo(Workers);
+/*
 Workers.belongsToMany(TodoItem, {through: TodoWorker})
 TodoItem.belongsToMany(Workers, {through: TodoWorker})
-
+*/
 module.exports = {
     TodosList,
     TodoItem,
     Workers,
-    Contacts
+    Contacts,
+    //TodoWorker
 }
