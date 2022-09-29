@@ -11,7 +11,6 @@ const TodosList = sequelize.define('todos_lists', {
     name:
     {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false
     }
 });
@@ -64,30 +63,17 @@ const Contacts = sequelize.define('contacts', {
         unique: true
     }
 });
-/*
-const TodoWorker = sequelize.define('todo_workers', {
-    id:
-    {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    }
-})
-*/
+
 TodosList.hasMany(TodoItem);
 TodoItem.belongsTo(TodosList);
 
 
 Workers.hasMany(TodosList);
 TodosList.belongsTo(Workers);
-/*
-Workers.belongsToMany(TodoItem, {through: TodoWorker})
-TodoItem.belongsToMany(Workers, {through: TodoWorker})
-*/
+
 module.exports = {
     TodosList,
     TodoItem,
     Workers,
-    Contacts,
-    //TodoWorker
+    Contacts
 }

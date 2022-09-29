@@ -49,9 +49,9 @@ $gray: #e8e8fc;
     border: none;
     padding: 10px;
     cursor: pointer;
+
     & img {
         transition: transform .3s;
-        pointer-events: none;
     }
 
     &:hover img {

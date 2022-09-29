@@ -1,21 +1,20 @@
 import React, { useRef } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import del from '../assets/images/delete.svg'
-//import edit from '../assets/images/edit.svg'
-import expand from '../assets/images/expand.svg'
+import { useEffect } from 'react';
+import { useState } from 'react';
+import del from '../assets/images/delete.svg';
+//import edit from '../assets/images/edit.svg';
+import expand from '../assets/images/expand.svg';
 export default function TaskItem({ text }) {
-    ///console.log('Item')
-    const [editActive, setEditActive] = useState(false)
-    const [width, setWidth] = useState()
-    const textRef = useRef(null)
-    const containerRef = useRef(null)
+    const [editActive, setEditActive] = useState(false);
+    const [width, setWidth] = useState();
+    const textRef = useRef(null);
+    const containerRef = useRef(null);
     const Expand = () => {
-        setEditActive((prevState) => !prevState)
+        setEditActive((prevState) => !prevState);
     }
     useEffect(() => {
-        setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth))
-    }, [containerRef?.current?.offsetWidth])
+        setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
+    }, [containerRef?.current?.offsetWidth]);
     const Delete = () => {
 
     }
@@ -47,7 +46,7 @@ export default function TaskItem({ text }) {
                 <button className='task__item-btn' onClick={Delete}><img src={del} alt='delete icon' /></button>
             </div>
         </div>
-    )
+    );
     //  <button className='task__item-btn' onClick={Edit}><img src={edit} alt='edit image' /></button>
 }
 export const TaskItemMemo = React.memo(TaskItem);

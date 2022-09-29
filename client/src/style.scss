@@ -145,6 +145,8 @@ main {
     }
 
     &__task-list {
+        width: 100%;
+
         margin-top: 15px;
         //IE
         display: flex;
@@ -159,15 +161,29 @@ main {
         @media (max-width: 1050px) {
             grid-template-columns: 1fr 1fr;
 
+            & .task__article {
+                justify-self: end;
+
+                &:nth-child(even) {
+                    justify-self: start;
+                }
+            }
         }
 
         @media (max-width: 767px) {
             grid-template-columns: 1fr;
 
+            & .task__article {
+                justify-self: center;
+
+                &:nth-child(even) {
+                    justify-self: center;
+                }
+            }
+
         }
 
         &--horizontal {
-            width: 100%;
             overflow-x: auto;
             overflow-y: hidden;
             display: flex;
@@ -177,11 +193,13 @@ main {
             gap: 0px;
             flex-wrap: nowrap;
             justify-content: flex-start;
+
             & .task__article {
                 @media (max-width: 400px) {
                     min-width: 280px;
                     max-width: 280px;
                 }
+
                 min-width: 360px;
                 max-width: 360px;
                 max-height: none;
@@ -195,6 +213,7 @@ main {
     &__article {
         position: relative;
         max-width: 400px;
+        width: 100%;
         height: 60vh;
         max-height: 600px;
         min-height: 450px;
@@ -329,7 +348,7 @@ main {
         justify-content: center;
     }
 
-  //  &__header-form {}
+    //  &__header-form {}
 
     &__contact-table {
         background-color: $block-color;

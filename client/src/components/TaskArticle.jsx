@@ -1,31 +1,22 @@
-import React, { useState } from 'react'
-import { TaskItemListMemo } from './TaskItemList'
-import MyAddBtn from './UI/MyAddBtn/MyAddBtn'
-import MyTextArea from './UI/MyTextArea/MyTextArea'
-export default function TaskArticle({ title, tasks, reference, className }) {
-  //console.log('Article')
-  const rootClasses = ['task__article', className]
+import React, { useState } from 'react';
+import { TaskItemListMemo } from './TaskItemList';
+import MyAddBtn from './UI/MyAddBtn/MyAddBtn';
+import MyTextArea from './UI/MyTextArea/MyTextArea';
+import { createTodo, fetchTodos } from '../API/todosAPI.js';
 
-  const [inputvalue, setInputvalue] = useState('')
-  const [tasksList, setTasksList] = useState(tasks)
-
+export default function TaskArticle({ title, tasks, reference, todosId }) {
+  const [inputvalue, setInputvalue] = useState('');
   const eddClick = () => {
-    if(!(tasksList.find(item => item.text === inputvalue)) && inputvalue){
-      setTasksList([...tasksList, { text: inputvalue }])
+    let isUnique = !(tasks.find(item => item.title === inputvalue)); //!Не работает пока нет обновления!
+    if (isUnique && inputvalue) {
+      createTodo({ id: todosId, todoTitle: inputvalue }).then(data => setInputvalue(''));
     }
-    else{
-      //! Нужна обработка обишки!!!
-      if (!inputvalue){
-        alert('Введите значение!')
-      }
-      else{
-        alert('Такая задача уже есть!')
-      }
+    else {
+      !inputvalue ? alert('Введите значение!') : alert('Такой список уже есть!');
     }
-    setInputvalue('')
   }
   return (
-    <article className={rootClasses.join(' ')} ref={reference}>
+    <article className='task__article' ref={reference}>
       <header className='task__article-header'>
         <h3 className='task__article-header-title'>{title}</h3>
         <form className='task__article-header-add' onSubmit={e => e.preventDefault()}>
@@ -36,8 +27,8 @@ export default function TaskArticle({ title, tasks, reference, className }) {
           <MyAddBtn className='task__article-header-btn' eddClick={eddClick}></MyAddBtn>
         </form>
       </header>
-      <TaskItemListMemo props={tasksList} />
+      <TaskItemListMemo props={tasks} />
     </article>
-  )
+  );
 }
 export const TaskArticleMemo = React.memo(TaskArticle);

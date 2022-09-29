@@ -1,9 +1,9 @@
-import React from 'react'
-import enter from '../../../assets/images/enter.svg'
-import './MyInput.scss'
-export default function MyInput({ className, massege, id, value, onChange, onClick }) {
+import React from 'react';
+import enter from '../../../assets/images/enter.svg';
+import './MyInput.scss';
+export default function MyInput({ className, massege, id, value, onChange, onSubmit }) {
     return (
-        <form className={[className, 'input-form'].join(' ')} onSubmit={onClick}>
+        <form className={[className, 'input-form'].join(' ')} onSubmit={onSubmit} name={id}>
             <input className='input-form__input'
                 type='text'
                 placeholder={massege}
@@ -12,10 +12,12 @@ export default function MyInput({ className, massege, id, value, onChange, onCli
                 value={value}
                 onChange={onChange}
                 required
-                autoComplete='off' />
-            <button className='input-form__button' name={id} onClick={onClick}>
-                <img src={enter} alt='enter icon'/>
+                autoComplete='off'
+            />
+            <button className='input-form__button'>
+                <img src={enter} alt='enter icon' />
             </button>
             <label className='input-form__label' htmlFor={id} >{massege}</label>
-        </form>)
+        </form>
+    );
 }
