@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
-import { TaskArticleMemo } from './TaskArticle.jsx';
+import TaskArticle from './TaskArticle.jsx';
 import MyInput from './UI/MyInput/MyInput.jsx';
 import { createTodo } from '../API/todosAPI.js';
 import { observer } from "mobx-react-lite";
@@ -27,7 +27,7 @@ const TaskArticleList = observer(({ workerId }) => {
         let isUnique = !(workerTodo.find(item => item.name === newList));
         if (isUnique && newList) {
             createTodo({ name: newList, workerId: workerId })
-                .then(data => TodosStore.addTodo(data))
+                .then(data =>  TodosStore.addTodo(data))
                 .then(() => setIsAdding(true))
             setNewList('')
         }
@@ -54,10 +54,9 @@ const TaskArticleList = observer(({ workerId }) => {
                 {!workerTodo.length
                     ? <h2 className='task__clear'>Нет списков</h2>
                     : workerTodo.map(item =>
-                        <TaskArticleMemo
+                        <TaskArticle
                             key={item.id}
-                            title={item.name}
-                            tasks={item.todo_items}
+                            item={item}
                             todosId={item.id}
                         />
                     )
