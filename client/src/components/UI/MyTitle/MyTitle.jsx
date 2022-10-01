@@ -4,6 +4,6 @@ import classes from './MyTitle.module.scss';
 export default function MyTitle({children, className, ...props}) {
     const rootClasses = [classes.MyTitle, className];
     return (
-        <h1 className={rootClasses.join(' ')} {...props}>{children}</h1>
+        <h2 className={rootClasses.join(' ')} {...props}>{children}</h2>
     );
 }

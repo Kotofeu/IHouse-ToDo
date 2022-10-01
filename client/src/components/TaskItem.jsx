@@ -9,14 +9,15 @@ export default function TaskItem({ text }) {
     const [width, setWidth] = useState();
     const textRef = useRef(null);
     const containerRef = useRef(null);
-    const Expand = () => {
-        setEditActive((prevState) => !prevState);
-    }
+
     useEffect(() => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
     }, [containerRef?.current?.offsetWidth]);
     const Delete = () => {
 
+    }
+    const Expand = () => {
+        setEditActive((prevState) => !prevState);
     }
     return (
         <div className='task__item'>

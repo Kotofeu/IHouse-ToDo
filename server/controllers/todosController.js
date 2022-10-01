@@ -26,7 +26,10 @@ class todosController {
         let todosList;
         if (!workerId) {
             todosList = await TodosList.findAndCountAll({
+                order: [
+                    ['id', 'ASC']],
                 include: { model: TodoItem }
+                
             });
         }
         else {

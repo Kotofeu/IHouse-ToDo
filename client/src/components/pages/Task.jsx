@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { TaskArticleListMemo } from '../TaskArticleList';
-import MyTab from '../UI/MyTab/MyTab.jsx';
-import MyTitle from '../UI/Title/MyTitle';
+import React, { useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { createWorker, fetchWorkers } from '../../API/workerAPI';
-export default function Task() {
-    // console.log('Task')
-    const [workers, setWorkers] = useState([]);
-    const [isHorizontal, setIsHorizontal] = useState(localStorage.getItem('isHorizontal'));
-    useEffect(() => {
-        localStorage.setItem('isHorizontal', isHorizontal ? 'True' : '');
-    }, [isHorizontal]);
-    useEffect(() => {
-        document.title = 'Список задач';
-        fetchWorkers().then(data => setWorkers(data.rows));
-    }, []);
+import { observer } from "mobx-react-lite";
 
+import MyTab from '../UI/MyTab/MyTab.jsx';
+import MyTitle from '../UI/MyTitle/MyTitle';
+import MyLoader from '../UI/MyLoader/MyLoader';
+import MyError from '../UI/MyError/MyError';
+import TaskArticleList from '../TaskArticleList';
+
+import { fetchTodos } from '../../API/todosAPI';
+import { fetchWorkers } from '../../API/workerAPI';
+import useRequest from '../../hooks/useRequest';
+
+import TodosStore from '../../store/TodosStore';
+
+const Task = observer(() => {
+    const [todos, todosLoading, todosError] = useRequest(fetchTodos);
+    const [workers, workersLoading, workersError] = useRequest(fetchWorkers);
+    useEffect(() => {
+        TodosStore.setIsHorizontal(localStorage.getItem('isHorizontal'))
+        document.title = 'Список задач';
+    })
+    useEffect(() => {
+        TodosStore.setTodos(todos)
+        TodosStore.setWorkers(workers)
+    }, [todos, workers]);
     const setAlignment = () => {
-        setIsHorizontal(!isHorizontal);
+        TodosStore.setIsHorizontal(!TodosStore.isHorizontal)
+        localStorage.setItem('isHorizontal', TodosStore.isHorizontal ? 'True' : '');
+    }
+    if (workersError || todosError) {
+        return (<MyError>{[workersError, todosError].join(' ')}</MyError>);
+    }
+    if (workersLoading || todosLoading) {
+        return (<MyLoader />);
     }
     return (
         <div className='task'>
@@ -26,23 +42,22 @@ export default function Task() {
                     <header className='task__header'>
                         <MyTitle>Список задач</MyTitle>
                         <button className={`task__header-orientation-btn 
-                            ${isHorizontal
+                            ${TodosStore.isHorizontal
                                 ? 'task__header-orientation-btn--horizontal'
                                 : ''
                             }`}
                             onClick={setAlignment} />
                     </header>
-                    {workers.length ?
+                    {TodosStore.workers.length ?
                         <Tabs>
                             <TabList className='task__tabs'>
-                                {workers.map(worker =>
+                                {TodosStore.workers.map(worker =>
                                     <Tab key={worker.id}><MyTab>{worker.name}</MyTab></Tab>
                                 )}
                             </TabList>
-                            {workers.map(workers =>
+                            {TodosStore.workers.map(workers =>
                                 <TabPanel key={workers.id}>
-                                    <TaskArticleListMemo
-                                        isHorizontal={isHorizontal}
+                                    <TaskArticleList
                                         workerId={workers.id}
                                     />
                                 </TabPanel>
@@ -56,4 +71,5 @@ export default function Task() {
 
         </div>
     );
-}
+})
+export default Task;

@@ -2,21 +2,22 @@ import React, { useState } from 'react';
 import { TaskItemListMemo } from './TaskItemList';
 import MyAddBtn from './UI/MyAddBtn/MyAddBtn';
 import MyTextArea from './UI/MyTextArea/MyTextArea';
-import { createTodo, fetchTodos } from '../API/todosAPI.js';
+import { createTodo } from '../API/todosAPI.js';
 
-export default function TaskArticle({ title, tasks, reference, todosId }) {
+export default function TaskArticle({ title, tasks, todosId }) {
   const [inputvalue, setInputvalue] = useState('');
   const eddClick = () => {
     let isUnique = !(tasks.find(item => item.title === inputvalue)); //!Не работает пока нет обновления!
     if (isUnique && inputvalue) {
-      createTodo({ id: todosId, todoTitle: inputvalue }).then(data => setInputvalue(''));
+      createTodo({ id: todosId, todoTitle: inputvalue });
+      setInputvalue('');
     }
     else {
       !inputvalue ? alert('Введите значение!') : alert('Такой список уже есть!');
     }
   }
   return (
-    <article className='task__article' ref={reference}>
+    <article className='task__article'>
       <header className='task__article-header'>
         <h3 className='task__article-header-title'>{title}</h3>
         <form className='task__article-header-add' onSubmit={e => e.preventDefault()}>

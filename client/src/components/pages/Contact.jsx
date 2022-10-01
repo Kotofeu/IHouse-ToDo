@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import MyInput from '../UI/MyInput/MyInput.jsx';
-import MyTitle from '../UI/Title/MyTitle';
-import { fetchContacts } from '../../API/contactsApi';
+import MyTitle from '../UI/MyTitle/MyTitle';
+import { fetchContacts, createContact } from '../../API/contactsApi';
+import useRequest from '../../hooks/useRequest.js';
+import MyError from '../UI/MyError/MyError.jsx';
+import MyLoader from '../UI/MyLoader/MyLoader.jsx';
 export default function Contact() {
+  const [contact, contactLoading, contactError] = useRequest(fetchContacts);
   const personInfo = ['ФИО', 'Информация', 'Телефон', 'Почта'];
-  const [contact, setContact] = useState([]);
   const [personInput, setPersonInput] = useState({
     addNewPerson: '',
     findPerson: ''
   });
   useEffect(() => {
     document.title = 'Контакты';
-    fetchContacts().then(data => setContact(data.rows));
   }, []);
   const formChange = e => {
     setPersonInput(prev => ({
@@ -23,6 +25,12 @@ export default function Contact() {
     setPersonInput(prev => ({
       ...prev, [e.target.name]: ''
     }));
+  }
+  if (contactError) {
+    return (<MyError>{contactError}</MyError>);
+  }
+  if (contactLoading) {
+    return (<MyLoader />);
   }
   return (
     <div className='contact'>

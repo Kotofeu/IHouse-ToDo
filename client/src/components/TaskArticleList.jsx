@@ -1,31 +1,32 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { TaskArticleMemo } from './TaskArticle.jsx';
 import MyInput from './UI/MyInput/MyInput.jsx';
-import { createTodo, fetchTodos } from '../API/todosAPI.js';
+import { createTodo } from '../API/todosAPI.js';
+import { observer } from "mobx-react-lite";
+import TodosStore from '../store/TodosStore.js';
+import { toJS } from 'mobx';
 
-export default function TaskArticleList({ isHorizontal, workerId }) {
+const TaskArticleList = observer(({ workerId }) => {
     const lastItem = useRef(null);
-    const [scrollToLast, setScrollToLast] = useState(false);
-    const [tasks, setTasks] = useState();
     const [newList, setNewList] = useState('');
+    const [isAdding, setIsAdding] = useState(false);
+    const workerTodo = useMemo(() => {
+        return TodosStore.todos.filter(item => item.workerId === workerId)
+    }, [isAdding])
     useEffect(() => {
-        if (scrollToLast) {
-            lastItem.current.scrollIntoView({ block: 'end', behavior: 'smooth', inline: 'nearest' });
-            setScrollToLast(false);
-            createTodo({ name: newList, workerId: workerId }).then(data => setNewList(''));
+        if (isAdding) {
+            lastItem.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "center" })
+            setIsAdding(false)
         }
-    }, [scrollToLast]);
-    useEffect(() => {
-        fetchTodos({ workerId: workerId })
-            .then(data => setTasks(data.rows.sort((a, b) => a.id - b.id)));
-    }, []);
-
-    const eddTaskList = e => {
+    }, [isAdding])
+    const addTaskList = e => {
         e.preventDefault();
-        let isUnique = !(tasks.find(item => item.name === newList)); //!Не работает пока нет обновления!
-
+        let isUnique = !(workerTodo.find(item => item.name === newList));
         if (isUnique && newList) {
-            setScrollToLast(true);
+                createTodo({ name: newList, workerId: workerId })
+                .then(data => TodosStore.addTodo(data))
+                .then(() => setIsAdding(true)) 
+            setNewList('')
         }
         else {
             !newList ? alert('Введите значение!') : alert('Такой список уже есть!');
@@ -38,28 +39,28 @@ export default function TaskArticleList({ isHorizontal, workerId }) {
                 id='AddNewList'
                 value={newList}
                 onChange={e => setNewList(e.target.value)}
-                onSubmit={eddTaskList}
+                onSubmit={addTaskList}
             />
-            {!tasks
-                ? <h2 className='task__clear'>Нет списков</h2>
-                : <section
-                    className={`task__task-list ${isHorizontal
-                        ? 'task__task-list--horizontal'
-                        : ''
-                        }`}>
-                    {tasks.map(item =>
+            <section
+                className={`task__task-list ${TodosStore.isHorizontal
+                    ? 'task__task-list--horizontal'
+                    : ''
+                    }`}>
+                {!workerTodo
+                    ? <h2 className='task__clear'>Нет списков</h2>
+                    : workerTodo.map(item =>
                         <TaskArticleMemo
                             key={item.id}
                             title={item.name}
                             tasks={item.todo_items}
                             todosId={item.id}
                         />
-                    )}
-                    <div ref={lastItem}></div>
-                </section>
-            }
+                    )
+                }
+                <div ref={lastItem}></div>
+            </section>
 
         </div>
     );
-}
-export const TaskArticleListMemo = React.memo(TaskArticleList);
+})
+export default TaskArticleList;
