@@ -1,11 +1,11 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 
-class TodosStore {
+class TodosStore{
     constructor() {
         this._workers = [];
         this._todos = [];
         this._isHorizontal = localStorage.getItem('isHorizontal');
-        makeAutoObservable(this);
+        makeAutoObservable(this, {}, {deep: true});
     }
 
     setWorkers(workers) {
@@ -17,20 +17,20 @@ class TodosStore {
     setIsHorizontal(isHorizontal) {
         this._isHorizontal = isHorizontal;
     }
+
+
     addTodo(newTodo){
         this._todos.push(newTodo);
     }
     get workers() {
         return this._workers;
     }
-
     get todos() {
         return this._todos;
     }
     get isHorizontal() {
         return this._isHorizontal;
     }
-
-
+   
 }
-export default new TodosStore
+export default new TodosStore;

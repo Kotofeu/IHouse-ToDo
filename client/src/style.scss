@@ -141,12 +141,11 @@ main {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        position: relative;
     }
 
     &__task-list {
         width: 100%;
-
         margin-top: 15px;
         //IE
         display: flex;
@@ -329,7 +328,15 @@ main {
     }
 
     &__clear {
+        position: absolute;
+        width: 100%;
         font-size: 30px;
+        text-align: center;
+        margin-top: 30px;
+        color: $header-color;
+    }
+    &__article-list-empty{
+        font-size: 25px;
         text-align: center;
         margin-top: 30px;
         color: $header-color;

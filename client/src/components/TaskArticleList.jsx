@@ -4,7 +4,6 @@ import MyInput from './UI/MyInput/MyInput.jsx';
 import { createTodo } from '../API/todosAPI.js';
 import { observer } from "mobx-react-lite";
 import TodosStore from '../store/TodosStore.js';
-import { toJS } from 'mobx';
 
 const TaskArticleList = observer(({ workerId }) => {
     const lastItem = useRef(null);
@@ -15,7 +14,11 @@ const TaskArticleList = observer(({ workerId }) => {
     }, [isAdding])
     useEffect(() => {
         if (isAdding) {
-            lastItem.current.scrollIntoView({ behavior: "smooth", block: "end", inline: "center" })
+            lastItem.current.scrollIntoView({ 
+                behavior: "smooth", 
+                block: "end", 
+                inline: "center" 
+            })
             setIsAdding(false)
         }
     }, [isAdding])
@@ -23,13 +26,15 @@ const TaskArticleList = observer(({ workerId }) => {
         e.preventDefault();
         let isUnique = !(workerTodo.find(item => item.name === newList));
         if (isUnique && newList) {
-                createTodo({ name: newList, workerId: workerId })
+            createTodo({ name: newList, workerId: workerId })
                 .then(data => TodosStore.addTodo(data))
-                .then(() => setIsAdding(true)) 
+                .then(() => setIsAdding(true))
             setNewList('')
         }
         else {
-            !newList ? alert('Введите значение!') : alert('Такой список уже есть!');
+            !newList 
+            ? alert('Введите значение!') 
+            : alert('Такой список уже есть!');
         }
     }
     return (
@@ -46,7 +51,7 @@ const TaskArticleList = observer(({ workerId }) => {
                     ? 'task__task-list--horizontal'
                     : ''
                     }`}>
-                {!workerTodo
+                {!workerTodo.length
                     ? <h2 className='task__clear'>Нет списков</h2>
                     : workerTodo.map(item =>
                         <TaskArticleMemo
@@ -59,7 +64,6 @@ const TaskArticleList = observer(({ workerId }) => {
                 }
                 <div ref={lastItem}></div>
             </section>
-
         </div>
     );
 })
