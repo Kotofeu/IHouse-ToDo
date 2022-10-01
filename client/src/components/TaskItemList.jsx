@@ -3,11 +3,11 @@ import {TaskItemMemo} from './TaskItem';
 export default function TaskItemList({ props }) {
   try{
     if (!props.length){
-      return (<h3 className='task__article-list-empty'>Нет заметок</h3>)
+      return (<h3 className='task__article-list-empty'>Нет заметок</h3>);
     }
   }
   catch{
-    return (<h3 className='task__article-list-empty'>Нет заметок</h3>)
+    return (<h3 className='task__article-list-empty'>Нет заметок</h3>);
   }
   return (
     <ul className='task__article-list'>

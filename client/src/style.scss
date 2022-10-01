@@ -14,6 +14,11 @@
 main {
     min-height: 100vh;
     height: 100%;
+    background-color: $primary-color-light;
+    background: -webkit-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
+    background: -moz-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
+    background: linear-gradient(180deg, $primary-color-light, $primary-color-dark);
+
 }
 
 .header {
@@ -150,7 +155,7 @@ main {
         //IE
         display: flex;
         flex-wrap: wrap;
-        //
+        // Google Edge FireFox
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 40px;
@@ -257,7 +262,6 @@ main {
         max-width: calc(100% - 60px);
         min-height: 40px;
         max-height: 100px;
-        //resize: vertical;
     }
 
     &__article-header-btn {
@@ -354,8 +358,6 @@ main {
         display: flex;
         justify-content: center;
     }
-
-    //  &__header-form {}
 
     &__contact-table {
         background-color: $block-color;

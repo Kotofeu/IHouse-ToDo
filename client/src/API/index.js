@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { HOST_IP } from '../utils/consts';
 
 export const $conection = axios.create({
-    baseURL: 'http://localhost:5000/'
+    baseURL: HOST_IP
 });

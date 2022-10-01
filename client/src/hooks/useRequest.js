@@ -9,7 +9,7 @@ export default function useRequest(request) {
         request()
             .then(response => setData(response.rows))
             .catch(error => setError(error))
-            .finally(() => setIsLoading(false))
+            .finally(() => setIsLoading(false));
     }, [])
     return [data, isLoading, error];
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from 'react';
 import TaskArticle from './TaskArticle.jsx';
 import MyInput from './UI/MyInput/MyInput.jsx';
 import { createTodo } from '../API/todosAPI.js';
-import { observer } from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
 import TodosStore from '../store/TodosStore.js';
 
 const TaskArticleList = observer(({ workerId }) => {
@@ -10,30 +10,30 @@ const TaskArticleList = observer(({ workerId }) => {
     const [newList, setNewList] = useState('');
     const [isAdding, setIsAdding] = useState(false);
     const workerTodo = useMemo(() => {
-        return TodosStore.todos.filter(item => item.workerId === workerId)
-    }, [isAdding])
+        return TodosStore.todos.filter(item => item.workerId === workerId);
+    }, [isAdding]);
     useEffect(() => {
         if (isAdding) {
             lastItem.current.scrollIntoView({ 
-                behavior: "smooth", 
-                block: "end", 
-                inline: "center" 
-            })
-            setIsAdding(false)
+                behavior: 'smooth', 
+                block: 'end', 
+                inline: 'center' 
+            });
+            setIsAdding(false);
         }
-    }, [isAdding])
+    }, [isAdding]);
     const addTaskList = e => {
         e.preventDefault();
         let isUnique = !(workerTodo.find(item => item.name === newList));
         if (isUnique && newList) {
             createTodo({ name: newList, workerId: workerId })
                 .then(data =>  TodosStore.addTodo(data))
-                .then(() => setIsAdding(true))
-            setNewList('')
+                .then(() => setIsAdding(true));
+            setNewList('');
         }
         else {
             !newList 
-            ? alert('Введите значение!') 
+            ? alert('Введите значение!')
             : alert('Такой список уже есть!');
         }
     }

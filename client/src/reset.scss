@@ -35,12 +35,6 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color: $primary-color-light;
-  background: -webkit-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
-  background: -moz-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
-  background: linear-gradient(180deg, $primary-color-light, $primary-color-dark);
-  background-attachment: fixed;
-  background-position: center;
   font-family: 'Open Sans';
   font-weight: 400;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { observer } from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
 
 import MyTab from '../UI/MyTab/MyTab.jsx';
 import MyTitle from '../UI/MyTitle/MyTitle';
@@ -18,15 +18,15 @@ const Task = observer(() => {
     const [todos, todosLoading, todosError] = useRequest(fetchTodos);
     const [workers, workersLoading, workersError] = useRequest(fetchWorkers);
     useEffect(() => {
-        TodosStore.setIsHorizontal(localStorage.getItem('isHorizontal'))
+        TodosStore.setIsHorizontal(localStorage.getItem('isHorizontal'));
         document.title = 'Список задач';
     })
     useEffect(() => {
-        TodosStore.setTodos(todos)
-        TodosStore.setWorkers(workers)
+        TodosStore.setTodos(todos);
+        TodosStore.setWorkers(workers);
     }, [todos, workers]);
     const setAlignment = () => {
-        TodosStore.setIsHorizontal(!TodosStore.isHorizontal)
+        TodosStore.setIsHorizontal(!TodosStore.isHorizontal);
         localStorage.setItem('isHorizontal', TodosStore.isHorizontal ? 'True' : '');
     }
     if (workersError || todosError) {

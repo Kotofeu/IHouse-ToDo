@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 class TodosStore {
     constructor() {
@@ -28,7 +28,7 @@ class TodosStore {
                 ...todo,
                 todo_items: [...todo.todo_items, newTask]
             }
-            : todo)
+            : todo);
     }
     get workers() {
         return this._workers;
