@@ -1,10 +1,12 @@
+$tab-color: #618930;
+$tab-color-active: #87C232;
 .MyTab {
-    border: 2px solid #8587ad;
-    background-color: #e8e8fc;
+    border: 2px solid $tab-color;;
+    background-color: $tab-color;
+    color: #222629;
     font-size: 18px;
     font-family: 'Open Sans';
     font-weight: 600;
-    color: #000;
     border-radius: 30px;
     min-height: 40px;
     display: inline;
@@ -13,8 +15,8 @@
     transition: .3s;
 
     &:hover {
-        border: 2px solid #2b5363;
-        background-color: #2b5363;
+        border: 2px solid $tab-color-active;
+        background-color: $tab-color-active;
         color: #fff;
     }
 }

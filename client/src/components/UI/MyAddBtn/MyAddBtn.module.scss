@@ -1,7 +1,9 @@
+$add-btn-color: #618930;
+$add-btn-color-hover: #87C232;
 .MyAddBtn {
     position: relative;
     z-index: 2;
-    color: #1F3F4C;
+    color: $add-btn-color;
     font-size: 50px;
     font-family: 'Open Sans';
     font-weight: 400;
@@ -13,23 +15,26 @@
     border: none;
     line-height: 0;
     cursor: pointer;
+    transition: all .3s;
 
     &::after {
         content: '';
-        transition: transform .3s;
+        transition: all .3s;
         z-index: -1;
         position: absolute;
         left: 0;
         top: 1px;
         width: 100%;
         height: 100%;
-        border: 2px solid #1F3F4C;
+        border: 2px solid $add-btn-color;
         border-radius: 50%;
     }
 
     &:hover {
+        color: $add-btn-color-hover;
         &::after {
             transform: scale(1.1, 1.1);
+            border: 2px solid $add-btn-color-hover;
 
         }
     }

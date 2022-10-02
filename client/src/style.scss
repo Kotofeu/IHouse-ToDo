@@ -47,7 +47,7 @@ main {
     }
 
     &__nav-link {
-        color: $text-color-inactive;
+        color: $link-color-inactive;
         font-size: 23px;
         margin-left: 40px;
         font-family: 'Montserrat';
@@ -61,26 +61,26 @@ main {
             left: 0;
             height: 2px;
             width: 100%;
-            background-color: $text-color-inactive;
+            background-color: $link-color;
             opacity: 0;
             border-radius: 4px;
         }
 
         &:hover {
-            color: $text-color;
+            color: $link-color;
 
             &::after {
                 opacity: 1;
-                background-color: $text-color;
+                background-color: $link-color;
             }
         }
 
         &.active {
             pointer-events: none;
-            color: $text-color-inactive;
+            color: $link-color;
 
             &::after {
-                color: $text-color-inactive;
+                color: $link-color;
                 opacity: 1;
             }
         }
@@ -99,7 +99,6 @@ main {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-bottom: 10px;
         position: relative;
     }
 
@@ -131,8 +130,8 @@ main {
     }
 
     &__tabs {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 6px;
+        margin-bottom: 6px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -281,7 +280,7 @@ main {
         display: flex;
         flex-grow: 1;
         justify-content: space-between;
-        border-bottom: 3px solid #8587ad;
+        border-bottom: 3px solid #3A434A;
         padding: 10px;
         border-radius: 10px;
         background-color: $item-color;

@@ -1,7 +1,7 @@
-$primary: #1F3F4C;
-$secondary: rgb(7, 83, 32);
-$gray: #e8e8fc;
-
+$primary: #fff;
+$secondary: #fff;
+$gray: #6A6E70;
+$text-color: #F0F0F0;
 .input-form {
     position: relative;
     padding: 15px 0 0;
@@ -28,6 +28,7 @@ $gray: #e8e8fc;
         cursor: text;
         top: 20px;
     }
+
 }
 
 .input-form__label {
@@ -48,13 +49,14 @@ $gray: #e8e8fc;
     background: none;
     border: none;
     padding: 10px;
-    cursor: pointer;
-
+    cursor:auto;
     & img {
+        opacity: .5;
         transition: transform .3s;
     }
 
     &:hover img {
+       // opacity: 1;
         transform: scaleX(-1);
     }
 
@@ -70,16 +72,18 @@ $gray: #e8e8fc;
         display: block;
         transition: 0.2s;
         font-size: 13px;
-        color: $primary;
+        color: $text-color;
         font-weight: 600;
     }
 
     ~.input-form__button img {
         transform: scaleX(-1);
+        opacity: 1;
+        
 
     }
 
-    color: #000;
+    color: $text-color;
     border-image: linear-gradient(to right, $primary, $secondary);
     border-image-slice: 1;
 }
@@ -103,7 +107,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
     border-image: linear-gradient(to right, $primary, $secondary);
     border-image-slice: 1;
-    -webkit-text-fill-color: #1F3F4C;
+    -webkit-text-fill-color: $text-color;
     -webkit-box-shadow: 0 0 0px 1000px none inset;
     transition: background-color 5000s ease-in-out 0s;
 }
