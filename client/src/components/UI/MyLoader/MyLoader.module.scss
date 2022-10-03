@@ -1,10 +1,12 @@
 .MyLoader {
+    position: fixed;
     display: flex;
     height: 100vh;
     width: 100%;
     align-items: center;
     justify-content: center;
-    position: relative;
+    top:0;
+    left: 0;
     & div{
         box-sizing: border-box;
         display: block;

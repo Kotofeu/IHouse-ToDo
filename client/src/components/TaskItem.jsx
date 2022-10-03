@@ -4,12 +4,11 @@ import { useState } from 'react';
 import del from '../assets/images/delete.svg';
 //import edit from '../assets/images/edit.svg';
 import expand from '../assets/images/expand.svg';
-export default function TaskItem({ text }) {
+const TaskItem = React.memo(({ title }) => {
     const [editActive, setEditActive] = useState(false);
     const [width, setWidth] = useState();
     const textRef = useRef(null);
     const containerRef = useRef(null);
-
     useEffect(() => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
     }, [containerRef?.current?.offsetWidth]);
@@ -28,7 +27,7 @@ export default function TaskItem({ text }) {
                         : ''
                     }`}
                     ref={textRef}>
-                    {text}
+                    {title}
                 </p>
             </div>
 
@@ -49,5 +48,5 @@ export default function TaskItem({ text }) {
         </div>
     );
     //  <button className='task__item-btn' onClick={Edit}><img src={edit} alt='edit image' /></button>
-}
-export const TaskItemMemo = React.memo(TaskItem);
+})
+export default TaskItem;

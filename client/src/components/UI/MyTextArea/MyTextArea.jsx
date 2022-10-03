@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './MyTextArea.module.scss';
 
-export default function MyTextArea({ placeholder, className, inputvalue, setValue, ...props }) {
+const MyTextArea = ({ placeholder, className, inputvalue, setValue, ...props }) => {
     const rootClasses = [classes.MyTextArea, className];
     return (
         <textarea
@@ -13,3 +13,4 @@ export default function MyTextArea({ placeholder, className, inputvalue, setValu
         />
     );
 }
+export default MyTextArea;

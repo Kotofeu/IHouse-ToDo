@@ -1,8 +1,9 @@
 import React from 'react';
-import {TaskItemMemo} from './TaskItem';
-export default function TaskItemList({ props }) {
+import TaskItem from './TaskItem';
+const TaskItemList = React.memo(({ todo_items }) => {
+
   try{
-    if (!props.length){
+    if (!todo_items.length){
       return (<h3 className='task__article-list-empty'>Нет заметок</h3>);
     }
   }
@@ -11,12 +12,12 @@ export default function TaskItemList({ props }) {
   }
   return (
     <ul className='task__article-list'>
-      {props.map(item =>
+      {todo_items.map(item =>
         <li className='task__article-item' key={item.id}>
-          <TaskItemMemo text={item.title} />
+          <TaskItem title={item.title} />
         </li>
       )}
     </ul>
   );
-}
-export const TaskItemListMemo = React.memo(TaskItemList);
+})
+export default TaskItemList;

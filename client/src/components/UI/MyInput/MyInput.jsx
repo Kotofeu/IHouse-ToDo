@@ -1,7 +1,7 @@
 import React from 'react';
 import enter from '../../../assets/images/enter.svg';
 import './MyInput.scss';
-export default function MyInput({ className, massege, id, value, onChange, onSubmit }) {
+const MyInput = ({ className, massege, id, value, onChange, onSubmit }) => {
     return (
         <form className={[className, 'input-form'].join(' ')} onSubmit={onSubmit} name={id}>
             <input className='input-form__input'
@@ -21,3 +21,4 @@ export default function MyInput({ className, massege, id, value, onChange, onSub
         </form>
     );
 }
+export default MyInput;

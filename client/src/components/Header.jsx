@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../assets/images/logo.svg';
 import { NavLink } from 'react-router-dom';
 
-export default function Header({ props }) {
+const Header = ({ props }) => {
     return (
         <header className='header'>
             <div className='container'>
@@ -25,3 +25,4 @@ export default function Header({ props }) {
         </header >
     );
 }
+export default Header;

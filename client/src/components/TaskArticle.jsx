@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { TaskItemListMemo } from './TaskItemList';
+import TaskItemList from './TaskItemList';
 import MyAddBtn from './UI/MyAddBtn/MyAddBtn';
 import MyTextArea from './UI/MyTextArea/MyTextArea';
 import { createTodo } from '../API/todosAPI.js';
 import TodosStore from '../store/TodosStore';
 
-export default function TaskArticle({ todosId }) {
+const TaskArticle = React.memo(({ todosId }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [inputvalue, setInputvalue] = useState('');
   const currentTodo = useMemo(() => {
@@ -36,7 +36,8 @@ export default function TaskArticle({ todosId }) {
           <MyAddBtn className='task__article-header-btn' eddClick={addClick}></MyAddBtn>
         </form>
       </header>
-      <TaskItemListMemo props={currentTodo.todo_items} />
+      <TaskItemList todo_items={currentTodo.todo_items} />
     </article>
   );
-}
+})
+export default TaskArticle;

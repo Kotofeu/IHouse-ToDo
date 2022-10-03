@@ -16,31 +16,37 @@ class todosController {
                 const todosList = await TodosList.create({ name: name, workerId: workerId });
                 return res.json(todosList);
             }
-        } catch (e) {
+        } 
+        catch (e) {
             next(ApiError.badRequest(e.message));
         }
 
     }
     async getAll(req, res) {
-        let { workerId } = req.query;
-        let todosList;
-        if (!workerId) {
-            todosList = await TodosList.findAndCountAll({
-                order: [
-                    ['id', 'ASC']],
-                include: { model: TodoItem }
-                
-            });
+        try {
+            let { workerId } = req.query;
+            let todosList;
+            if (!workerId) {
+                todosList = await TodosList.findAndCountAll({
+                    order: [
+                        ['id', 'ASC']],
+                    include: { model: TodoItem }
+                    
+                });
+            }
+            else {
+                todosList = await TodosList.findAndCountAll({
+                    where: {
+                        workerId: workerId
+                    },
+                    include: { model: TodoItem }
+                });
+            }
+            return res.json(todosList);
         }
-        else {
-            todosList = await TodosList.findAndCountAll({
-                where: {
-                    workerId: workerId
-                },
-                include: { model: TodoItem }
-            });
+        catch (e) {
+            next(ApiError.badRequest(e.message));
         }
-        return res.json(todosList);
     }
 }
 

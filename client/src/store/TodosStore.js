@@ -5,6 +5,7 @@ class TodosStore {
         this._workers = [];
         this._todos = [];
         this._isHorizontal = localStorage.getItem('isHorizontal');
+        this._defaultWorker = localStorage.getItem('defaultWorker');
         makeAutoObservable(this, {}, { deep: true });
     }
 
@@ -17,7 +18,9 @@ class TodosStore {
     setIsHorizontal(isHorizontal) {
         this._isHorizontal = isHorizontal;
     }
-
+    setDefaultWorker(defaultWorker) {
+        this._defaultWorker = defaultWorker;
+    }
 
     addTodo(newTodo) {
         this._todos.push({...newTodo, todo_items: []});
@@ -38,6 +41,9 @@ class TodosStore {
     }
     get isHorizontal() {
         return this._isHorizontal;
+    }
+    get defaultWorker() {
+        return this._defaultWorker;
     }
 
 }

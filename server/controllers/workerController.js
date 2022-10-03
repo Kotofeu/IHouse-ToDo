@@ -7,7 +7,8 @@ class workerController {
             let { name } = req.body;
             const workers = await Workers.create({ name });
             return res.json(workers);
-        } catch (e) {
+        } 
+        catch (e) {
             next(ApiError.badRequest(e.message));
         }
 
@@ -17,13 +18,18 @@ class workerController {
         return res.json(workers);
     }
     async getById(req, res) {
-        const { id } = req.params;
-        const workers = await Workers.findOne(
-            {
-                where: { id: id },
-            },
-        );
-        return res.json(workers);
+        try{
+            const { id } = req.params;
+            const workers = await Workers.findOne(
+                {
+                    where: { id: id },
+                },
+            );
+            return res.json(workers);
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
     }
 };
 

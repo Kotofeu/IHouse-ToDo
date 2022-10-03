@@ -41,6 +41,7 @@ h6 {
 
 
 body {
+  background-color: $primary-color-dark;
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
@@ -92,7 +93,8 @@ select {
 }
 
 *::-webkit-scrollbar-track {
-  background: $header-color;
+  background: transparent;
+  
 }
 
 *::-webkit-scrollbar-thumb {

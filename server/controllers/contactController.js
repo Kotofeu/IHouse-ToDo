@@ -7,7 +7,8 @@ class contactController {
             let { name, info, phone, email } = req.body;
             const сontacts = await Contacts.create({ name, info, phone, email });
             return res.json(сontacts);
-        } catch (e) {
+        } 
+        catch (e) {
             next(ApiError.badRequest(e.message));
         }
     }
@@ -16,13 +17,18 @@ class contactController {
         return res.json(сontacts);
     }
     async getById(req, res) {
-        const { id } = req.params;
-        const сontacts = await Contacts.findOne(
-            {
-                where: { id: id },
-            },
-        );
-        return res.json(сontacts);
+        try{
+            const { id } = req.params;
+            const сontacts = await Contacts.findOne(
+                {
+                    where: { id: id },
+                },
+            );
+            return res.json(сontacts);
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
     }
 }
 

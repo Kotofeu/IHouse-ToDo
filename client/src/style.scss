@@ -336,28 +336,32 @@ main {
         font-size: 30px;
         text-align: center;
         margin-top: 30px;
-        color: $header-color;
+        color: $item-color;
+
     }
     &__article-list-empty{
         font-size: 25px;
         text-align: center;
         margin-top: 30px;
-        color: $header-color;
+        color: $item-color;
     }
 }
 
 .contact {
-    padding: 90px 0 30px;
 
     &__inner {
         overflow: hidden;
+        padding: 90px 0 30px;
+
     }
 
     &__header {
         display: flex;
         justify-content: center;
     }
-
+    &__form{
+        display: flex
+    }
     &__contact-table {
         background-color: $block-color;
         height: 100%;
@@ -365,7 +369,7 @@ main {
         border-radius: 20px;
         overflow: hidden;
         animation: slide-in .5s ease;
-
+        margin-top: 20px;
     }
 
     &__contact-tbody {
@@ -376,7 +380,7 @@ main {
     &__contact-thead {
         font-weight: 600;
         background-color: $item-color;
-        border-bottom: 1px #1F3F4C solid;
+        border-bottom: 1px $primary-color-dark  solid;
     }
 
     &__contact-row {
@@ -384,7 +388,7 @@ main {
         justify-content: space-between;
         display: grid;
         grid-template-columns: 2fr 1.5fr 1fr 2fr;
-        border-top: 1px #1F3F4C solid;
+        border-top: 1px $primary-color-dark solid;
 
         &:first-child {
             border-top: none;
@@ -395,7 +399,7 @@ main {
         font-size: 17px;
         text-align: left;
         padding: 10px;
-        border-left: 1px #1F3F4C solid;
+        border-left: 1px $primary-color-dark solid;
         word-break: break-all;
         overflow: hidden;
 
@@ -416,11 +420,6 @@ main {
             text-overflow: ellipsis;
         }
     }
-}
-
-.archive {
-    min-height: 100vh;
-
 }
 
 

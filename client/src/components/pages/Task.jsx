@@ -19,8 +19,9 @@ const Task = observer(() => {
     const [workers, workersLoading, workersError] = useRequest(fetchWorkers);
     useEffect(() => {
         TodosStore.setIsHorizontal(localStorage.getItem('isHorizontal'));
+        TodosStore.setDefaultWorker(localStorage.getItem('defaultWorker'));
         document.title = 'Список задач';
-    })
+    }, [])
     useEffect(() => {
         TodosStore.setTodos(todos);
         TodosStore.setWorkers(workers);
@@ -28,6 +29,11 @@ const Task = observer(() => {
     const setAlignment = () => {
         TodosStore.setIsHorizontal(!TodosStore.isHorizontal);
         localStorage.setItem('isHorizontal', TodosStore.isHorizontal ? 'True' : '');
+    }
+    const setWorker = (id) => {
+        let index = --id
+        TodosStore.setDefaultWorker(index);
+        localStorage.setItem('defaultWorker', index);
     }
     if (workersError || todosError) {
         return (<MyError>{[workersError, todosError].join(' ')}</MyError>);
@@ -49,10 +55,13 @@ const Task = observer(() => {
                             onClick={setAlignment} />
                     </header>
                     {TodosStore.workers.length ?
-                        <Tabs>
+                        <Tabs defaultIndex={+TodosStore.defaultWorker}>
                             <TabList className='task__tabs'>
                                 {TodosStore.workers.map(worker =>
-                                    <Tab key={worker.id}><MyTab>{worker.name}</MyTab></Tab>
+                                    <Tab key={worker.id}
+                                        onClick={() => setWorker(worker.id)}>
+                                        <MyTab>{worker.name}</MyTab>
+                                    </Tab>
                                 )}
                             </TabList>
                             {TodosStore.workers.map(workers =>

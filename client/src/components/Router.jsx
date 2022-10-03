@@ -6,7 +6,7 @@ import Task from './pages/Task.jsx';
 import Header from './Header.jsx';
 import { CONTACT_ROUTE, TASK_ROUTE } from '../utils/consts.js';
 
-export default function Router() {
+const Router = () => {
     const navlist =
         [
             { text: 'Список задач', link: TASK_ROUTE },
@@ -26,3 +26,4 @@ export default function Router() {
         </BrowserRouter>
     );
 }
+export default Router;
