@@ -1,13 +1,8 @@
+import { toJS } from 'mobx';
 import React from 'react';
 import TaskItem from './TaskItem';
 const TaskItemList = React.memo(({ todo_items }) => {
-
-  try{
-    if (!todo_items.length){
-      return (<h3 className='task__article-list-empty'>Нет заметок</h3>);
-    }
-  }
-  catch{
+  if (!todo_items.length){
     return (<h3 className='task__article-list-empty'>Нет заметок</h3>);
   }
   return (

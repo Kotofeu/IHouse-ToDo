@@ -36,7 +36,9 @@ const TaskArticle = React.memo(({ todosId }) => {
           <MyAddBtn className='task__article-header-btn' eddClick={addClick}></MyAddBtn>
         </form>
       </header>
-      <TaskItemList todo_items={currentTodo.todo_items} />
+      <TaskItemList todo_items={
+        currentTodo.todo_items.sort((a, b) => a.id - b.id)
+      } />
     </article>
   );
 })

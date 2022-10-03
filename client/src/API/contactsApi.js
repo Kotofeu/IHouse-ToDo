@@ -1,6 +1,6 @@
 import { $conection } from './index.js';
 
-export const createContact = async (name, info, phone, email) => {
+export const createContact = async ({name, info, phone, email}) => {
     const { data } = await $conection.post('api/contact', { name, info, phone, email });
     return data;
 }

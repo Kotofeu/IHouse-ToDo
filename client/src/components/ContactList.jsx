@@ -9,7 +9,7 @@ const ContactList = observer(() => {
     <section className='contact__contact-table'>
       <header className='contact__contact-thead contact__contact-row'>
         {personInfo.map(property =>
-          <h6 className='contact__contact-item' key={property}>{property}</h6>
+          <h6 className='contact__contact-item contact__contact-item-title' key={property}>{property}</h6>
         )}
       </header>
       <ul className='contact__contact-tbody'>

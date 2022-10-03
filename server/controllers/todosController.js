@@ -30,7 +30,9 @@ class todosController {
                 todosList = await TodosList.findAndCountAll({
                     order: [
                         ['id', 'ASC']],
-                    include: { model: TodoItem }
+                    include: { 
+                        model: TodoItem
+                    }
                     
                 });
             }
@@ -39,7 +41,11 @@ class todosController {
                     where: {
                         workerId: workerId
                     },
-                    include: { model: TodoItem }
+                    order: [
+                        ['id', 'ASC']],
+                    include: { 
+                        model: TodoItem
+                    }
                 });
             }
             return res.json(todosList);

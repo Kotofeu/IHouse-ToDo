@@ -30,16 +30,6 @@ dd {
   font-size: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $title-color;
-}
-
-
 body {
   background-color: $primary-color-dark;
   min-height: 100vh;
@@ -78,6 +68,18 @@ img {
   display: block;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $title-color;
+  font-family: 'Montserrat';
+}
+button {
+  cursor: pointer;
+}
 input,
 button,
 textarea,
@@ -94,7 +96,7 @@ select {
 
 *::-webkit-scrollbar-track {
   background: transparent;
-  
+
 }
 
 *::-webkit-scrollbar-thumb {

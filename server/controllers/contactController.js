@@ -13,7 +13,10 @@ class contactController {
         }
     }
     async getAll(req, res) {
-        const сontacts = await Contacts.findAndCountAll();
+        const сontacts = await Contacts.findAndCountAll({
+            order: [
+                ['id', 'ASC']],
+        });
         return res.json(сontacts);
     }
     async getById(req, res) {

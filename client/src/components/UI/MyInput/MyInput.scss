@@ -22,13 +22,11 @@ $text-color: #F0F0F0;
     &::placeholder {
         color: transparent;
     }
-
     &:placeholder-shown~.input-form__label {
         font-size: 20px;
         cursor: text;
         top: 20px;
     }
-
 }
 
 .input-form__label {
@@ -56,7 +54,6 @@ $text-color: #F0F0F0;
     }
 
     &:hover img {
-       // opacity: 1;
         transform: scaleX(-1);
     }
 
@@ -96,15 +93,15 @@ $text-color: #F0F0F0;
     }
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
+.input-form__input:-webkit-autofill,
+.input-form__input:-webkit-autofill:hover,
+.input-form__input:-webkit-autofill:focus,
+.input-form__input:-webkit-autofill,
+.input-form__input:-webkit-autofill:hover,
+.input-form__input:-webkit-autofill:focus,
+.input-form__input:-webkit-autofill,
+.input-form__input:-webkit-autofill:hover,
+.input-form__input:-webkit-autofill:focus {
     border-image: linear-gradient(to right, $primary, $secondary);
     border-image-slice: 1;
     -webkit-text-fill-color: $text-color;
