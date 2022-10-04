@@ -33,7 +33,7 @@ const TaskArticle = React.memo(({ todosId }) => {
             inputvalue={inputvalue}
             setValue={e => setInputvalue(e.target.value)}
             placeholder='Добавить заметку' />
-          <MyAddBtn className='task__article-header-btn' eddClick={addClick}></MyAddBtn>
+          <MyAddBtn className='task__article-header-btn' onClick={addClick}></MyAddBtn>
         </form>
       </header>
       <TaskItemList todo_items={

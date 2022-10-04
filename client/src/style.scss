@@ -359,7 +359,9 @@ main {
         display: flex;
         justify-content: center;
     }
-
+    &__header-btn{
+        margin-left: 20px;
+    }
     &__form {
         display: flex
     }
@@ -438,13 +440,21 @@ main {
         justify-content: center;
         align-items: center;
         color: #fff;
+        transition: opacity .3s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+        &--active{
+            opacity: 1;
+            pointer-events:all;
+
+        }
 
     }
 
     &__modal-form {
         padding: 20px;
         width: 400px;
-        background-color: $block-color;
+        background-color: #222924;
         border-radius: 10px;
         background: linear-gradient(to right, #222924, $primary-color-dark);
         box-shadow: 14px 15px 140px rgba($link-color-inactive, .3);

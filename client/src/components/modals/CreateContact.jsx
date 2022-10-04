@@ -3,7 +3,7 @@ import { createContact } from '../../API/contactsApi';
 import ContactStore from '../../store/ContactStore';
 import MyInput from '../UI/MyInput/MyInput';
 
-export default function CreateContact({ closeModal }) {
+export default function CreateContact({ closeModal, isShowModal}) {
   const [person, setPerson] = useState({
     name: '',
     info: '',
@@ -17,9 +17,10 @@ export default function CreateContact({ closeModal }) {
   }
   const formInput = e => {
     e.preventDefault();
-    let isUnique = !(ContactStore.contacts.find(item => item.name === person.name))
-      && !(ContactStore.contacts.find(item => item.phone === person.phone))
-      && !(ContactStore.contacts.find(item => item.email === person.email));
+    let contacts = ContactStore.contacts;
+    let isUnique = !(contacts.find(item => item.name === person.name))
+      && !(contacts.find(item => item.phone === person.phone))
+      && !(contacts.find(item => item.email === person.email));
     if (isUnique && person.name) {
       createContact({ name: person.name, info: person.info, phone: person.phone, email: person.email })
         .then(data => ContactStore.addContact(data));
@@ -38,7 +39,7 @@ export default function CreateContact({ closeModal }) {
     }
   }
   return (
-    <div className='contact__modal'>
+    <div className={`contact__modal ${isShowModal?'contact__modal--active':''}`}>
       <form className='contact__modal-form' method="POST">
         <h4 className='contact__modal-title'>Добавить контакт</h4>
         <input className="contact__modal-input"
