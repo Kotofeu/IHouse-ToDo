@@ -1,10 +1,12 @@
 import React, { useRef } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import del from '../assets/images/delete.svg';
+import { deleteTodo } from '../API/todosAPI';
 //import edit from '../assets/images/edit.svg';
 import expand from '../assets/images/expand.svg';
-const TaskItem = React.memo(({ title }) => {
+import TodosStore from '../store/TodosStore';
+import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
+const TaskItem = React.memo(({ title, id }) => {
     const [editActive, setEditActive] = useState(false);
     const [width, setWidth] = useState();
     const textRef = useRef(null);
@@ -13,7 +15,8 @@ const TaskItem = React.memo(({ title }) => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
     }, [containerRef?.current?.offsetWidth]);
     const Delete = () => {
-
+        deleteTodo({ todoId: id })
+            .then(() => TodosStore.deleteTask(id));
     }
     const Expand = () => {
         setEditActive((prevState) => !prevState);
@@ -30,7 +33,6 @@ const TaskItem = React.memo(({ title }) => {
                     {title}
                 </p>
             </div>
-
             <div className='task__item-buttons'>
                 {width === 0 ?
                     <button className={`task__item-btn task__item-btn-edit ' 
@@ -43,7 +45,7 @@ const TaskItem = React.memo(({ title }) => {
                     </button>
                     : null
                 }
-                <button className='task__item-btn' onClick={Delete}><img src={del} alt='delete icon' /></button>
+                <MyDeleteBtn className='task__item-btn' onClick={Delete} />
             </div>
         </div>
     );

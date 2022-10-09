@@ -4,7 +4,7 @@ import ContactStore from '../store/ContactStore';
 import ContactItem from './ContactItem';
 
 const ContactList = observer(() => {
-  const personInfo = ['ФИО', 'Информация', 'Телефон', 'Почта'];
+  const personInfo = ['','ФИО', 'Информация', 'Телефон', 'Почта'];
   return (
     ContactStore.contacts.length
     ? <section className='contact__contact-table'>
@@ -20,6 +20,6 @@ const ContactList = observer(() => {
       </ul>
     </section>
     : null
-  )
+  );
 })
 export default ContactList;

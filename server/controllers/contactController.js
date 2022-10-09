@@ -7,7 +7,21 @@ class contactController {
             let { name, info, phone, email } = req.body;
             const сontacts = await Contacts.create({ name, info, phone, email });
             return res.json(сontacts);
-        } 
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+    }
+    async delete(req, res, next) {
+        try {
+            let { id } = req.body;
+            const сontact = await Contacts.destroy(
+                {
+                    where: { id: id }
+                }
+            );
+            return res.json(сontact);
+        }
         catch (e) {
             next(ApiError.badRequest(e.message));
         }
@@ -20,7 +34,7 @@ class contactController {
         return res.json(сontacts);
     }
     async getById(req, res) {
-        try{
+        try {
             const { id } = req.params;
             const сontacts = await Contacts.findOne(
                 {

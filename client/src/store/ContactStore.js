@@ -12,6 +12,9 @@ class ContactStore {
     addContact(newContact) {
         this._contacts.push((newContact));
     }
+    deleteContact(id){
+        this._contacts = this._contacts.filter(contact => contact.id !== id);
+    }
     get contacts() {
         return this._contacts;
     }

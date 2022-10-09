@@ -23,7 +23,7 @@ class TodosStore {
     }
 
     addTodo(newTodo) {
-        this._todos.push({...newTodo, todo_items: []});
+        this._todos.push({ ...newTodo, todo_items: [] });
     }
     addTask(id, newTask) {
         this._todos = this._todos.map(todo => todo.id === id
@@ -33,6 +33,18 @@ class TodosStore {
             }
             : todo);
     }
+    deleteTodo(id) {
+        this._todos = this._todos.filter(todo => todo.id !== id);
+    }
+    deleteTask(id) {
+        this._todos = this._todos.map(todo => {
+            return {
+                ...todo,
+                todo_items: todo.todo_items.filter(item => item.id !== id)
+            };
+        });
+    }
+
     get workers() {
         return this._workers;
     }

@@ -11,7 +11,7 @@ const TaskArticleList = observer(({ workerId }) => {
     const [isAdding, setIsAdding] = useState(false);
     const workerTodo = useMemo(() => {
         return TodosStore.todos.filter(item => item.workerId === workerId);
-    }, [isAdding]);
+    }, [isAdding, TodosStore.todos]);
     useEffect(() => {
         if (isAdding) {
             lastItem.current.scrollIntoView({ 

@@ -1,8 +1,16 @@
 import React from 'react'
-const ContactItem = ({item}) => {
-    const {name, info, phone, email} = item;
-    return (    
+import { deleteContact } from '../API/contactsApi';
+import ContactStore from '../store/ContactStore';
+import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
+const ContactItem = ({ item }) => {
+    const { id, name, info, phone, email } = item;
+    const Delete = () => {
+        deleteContact({ id })
+            .then(() => ContactStore.deleteContact(id));
+    }
+    return (
         <li className='contact__contact-row'>
+            <MyDeleteBtn className='contact__contact-row-delete' onClick={Delete} />
             <div className='contact__contact-item'>{name}</div>
             <div className='contact__contact-item'>{info}</div>
             <div className='contact__contact-item'>
@@ -16,6 +24,6 @@ const ContactItem = ({item}) => {
                 </a>
             </div>
         </li>
-    )
+    );
 }
 export default ContactItem;

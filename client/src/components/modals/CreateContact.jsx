@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { createContact } from '../../API/contactsApi';
 import ContactStore from '../../store/ContactStore';
-import MyInput from '../UI/MyInput/MyInput';
 
-export default function CreateContact({ closeModal, isShowModal}) {
+const CreateContact = ({ closeModal, isShowModal}) => {
   const [person, setPerson] = useState({
     name: '',
     info: '',
@@ -81,5 +80,6 @@ export default function CreateContact({ closeModal, isShowModal}) {
         </div>
       </form>
     </div>
-  )
+  );
 }
+export default CreateContact;

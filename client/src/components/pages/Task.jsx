@@ -47,8 +47,7 @@ const Task = observer(() => {
                 <div className='task__inner'>
                     <header className='task__header'>
                         <MyTitle>Список задач</MyTitle>
-                        <button className={`task__header-orientation-btn 
-                            ${TodosStore.isHorizontal
+                        <button className={`task__header-orientation-btn ${TodosStore.isHorizontal
                                 ? 'task__header-orientation-btn--horizontal'
                                 : ''
                             }`}
@@ -80,5 +79,5 @@ const Task = observer(() => {
 
         </div>
     );
-})
+});
 export default Task;

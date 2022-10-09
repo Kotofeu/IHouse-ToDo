@@ -239,12 +239,24 @@ main {
         background-color: $block-color;
     }
 
+    &__article-header-title-box {
+        display: flex;
+        align-items: center;
+    }
+
     &__article-header-title {
         font-size: 20px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         height: 30px;
+        width: 100%;
+        padding-right: 10px;
+    }
+
+    &__article-header-delete {
+        width: 25px;
+        height: 25px;
     }
 
     &__article-header-add {
@@ -262,7 +274,7 @@ main {
         max-height: 100px;
     }
 
-    &__article-header-btn {
+    &__article-header-edit {
         max-width: 20%;
         margin-left: 20px;
     }
@@ -271,6 +283,7 @@ main {
         flex-grow: 1;
         height: 100%;
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 15px;
         padding-top: 5px;
     }
@@ -285,7 +298,6 @@ main {
         background-color: $item-color;
         margin: 10px 0;
         animation: slide-left .5s ease;
-
     }
 
     &__item-content {
@@ -317,7 +329,7 @@ main {
         padding: 0;
         background-color: transparent;
         border: none;
-        margin: 0px 7px;
+        margin-left: 7px;
         cursor: pointer;
     }
 
@@ -359,15 +371,17 @@ main {
         display: flex;
         justify-content: center;
     }
-    &__header-btn{
+
+    &__header-btn {
         margin-left: 20px;
     }
+
     &__form {
         display: flex
     }
 
     &__contact-table {
-        background-color: $block-color;
+        background-color: $item-color;
         height: 100%;
         width: 100%;
         border-radius: 20px;
@@ -382,8 +396,8 @@ main {
     }
 
     &__contact-thead {
+        background-color: $block-color;
         font-weight: 600;
-        background-color: $item-color;
         border-bottom: 1px $primary-color-dark solid;
     }
 
@@ -391,12 +405,17 @@ main {
         display: flex;
         justify-content: space-between;
         display: grid;
-        grid-template-columns: 2fr 1.5fr 1fr 2fr;
+        grid-template-columns: 40px 2fr 1.5fr 1fr 2fr;
         border-top: 1px $primary-color-dark solid;
 
         &:first-child {
             border-top: none;
         }
+    }
+
+    &__contact-row-delete {
+        padding: 10px;
+        align-self: flex-start;
     }
 
     &__contact-item {
@@ -424,10 +443,11 @@ main {
             text-overflow: ellipsis;
         }
     }
-    &__contact-item-title{
+
+    &__contact-item-title {
         font-size: 20px;
-        color: $primary-color-dark;
     }
+
     &__modal {
         position: fixed;
         top: 0;
@@ -443,9 +463,10 @@ main {
         transition: opacity .3s ease-in-out;
         opacity: 0;
         pointer-events: none;
-        &--active{
+
+        &--active {
             opacity: 1;
-            pointer-events:all;
+            pointer-events: all;
 
         }
 
@@ -468,7 +489,7 @@ main {
         font-size: 25px;
         padding-bottom: 5px;
         color: inherit;
-        
+
     }
 
     &__modal-input {
@@ -480,9 +501,10 @@ main {
         border: 1px solid #fff;
         margin: 10px 0;
         color: inherit;
+
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus{
+        &:-webkit-autofill:focus {
             border-image: none;
             -webkit-text-fill-color: #fff;
             transition: background-color 5000s ease-in-out 0s;

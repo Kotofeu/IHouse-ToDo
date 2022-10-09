@@ -16,7 +16,7 @@ class todosController {
                 const todosList = await TodosList.create({ name: name, workerId: workerId });
                 return res.json(todosList);
             }
-        } 
+        }
         catch (e) {
             next(ApiError.badRequest(e.message));
         }
@@ -30,10 +30,10 @@ class todosController {
                 todosList = await TodosList.findAndCountAll({
                     order: [
                         ['id', 'ASC']],
-                    include: { 
+                    include: {
                         model: TodoItem
                     }
-                    
+
                 });
             }
             else {
@@ -43,7 +43,7 @@ class todosController {
                     },
                     order: [
                         ['id', 'ASC']],
-                    include: { 
+                    include: {
                         model: TodoItem
                     }
                 });
@@ -53,6 +53,36 @@ class todosController {
         catch (e) {
             next(ApiError.badRequest(e.message));
         }
+    }
+    async delete(req, res, next) {
+        try {
+            let { id, todoId } = req.body;
+            if (id) {
+                const todosItems = await TodoItem.destroy({
+                    where: {
+                        todosListId: id
+                    }
+                });
+                const todosList = await TodosList.destroy({
+                    where: {
+                        id: id
+                    }
+                });
+                return res.json(todosItems + todosList);
+            }
+            else {
+                const todo = await TodoItem.destroy({
+                    where: {
+                        id: todoId
+                    }
+                });
+                return res.json(todo);
+            }
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+
     }
 }
 
