@@ -226,12 +226,14 @@ main {
         border-radius: 30px;
         overflow: hidden;
         animation: slide-in .5s ease;
-
         &:first-child {
             margin-left: 0px;
         }
+        &--deleted{
+            transition: transform .5s ease;
+            transform: translateY(-100%);
+        }
     }
-
     &__article-header {
         text-align: center;
         padding: 10px;
@@ -298,8 +300,11 @@ main {
         background-color: $item-color;
         margin: 10px 0;
         animation: slide-left .5s ease;
+        &--deleted{
+            transition: transform .5s ease;
+            transform: translate(100%);
+        }
     }
-
     &__item-content {
         margin-right: 5px;
         flex-grow: 1;
@@ -333,11 +338,16 @@ main {
         cursor: pointer;
     }
 
-    &__item-btn-edit {
-        transition: transform .3s;
-
+    &__item-btn-expand {
+        transition: transform .3s; 
+        &:hover{
+            transform: translateY(10%);
+        }
         &--active {
-            transform: rotateZ(180deg);
+            transform: rotateZ(180deg) translateY(0);
+            &:hover{
+                transform:  rotateZ(180deg) translateY(10%);
+            }
         }
     }
 
@@ -411,8 +421,11 @@ main {
         &:first-child {
             border-top: none;
         }
+        &--deleted {
+            transition: transform .5s ease;
+            transform: translate(100%);
+        }
     }
-
     &__contact-row-delete {
         padding: 10px;
         align-self: flex-start;

@@ -8,6 +8,7 @@ import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
 
 const TaskArticle = React.memo(({ todosId }) => {
   const [inputvalue, setInputvalue] = useState('');
+  const [isDeleted, setIsDeleted] = useState(false);
   const currentTodo = useMemo(() => {
     return TodosStore.todos.find(item => item.id === todosId);
   }, [TodosStore.todos]);
@@ -23,11 +24,14 @@ const TaskArticle = React.memo(({ todosId }) => {
     }
   }
   const deleteClick = () => {
-    deleteTodo({ id: todosId })
-      .then(() => TodosStore.deleteTodo(todosId));
+    setIsDeleted(true)
+    setTimeout(() => deleteTodo({ id: todosId }).then(() => TodosStore.deleteTodo(todosId)), 300);
   }
   return (
-    <article className='task__article'>
+    <article className={`task__article ${isDeleted
+      ? 'task__article--deleted'
+      : ''
+      }`}>
       <header className='task__article-header'>
         <div className='task__article-header-title-box'>
           <h3 className='task__article-header-title'>{currentTodo.name}</h3>
@@ -41,7 +45,7 @@ const TaskArticle = React.memo(({ todosId }) => {
           <MyAddBtn className='task__article-header-edit' onClick={addClick}></MyAddBtn>
         </form>
       </header>
-      <TaskItemList todo_items = {
+      <TaskItemList todo_items={
         currentTodo.todo_items.sort((a, b) => a.id - b.id)
       } />
     </article>

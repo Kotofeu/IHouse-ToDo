@@ -8,6 +8,7 @@ import TodosStore from '../store/TodosStore';
 import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
 const TaskItem = React.memo(({ title, id }) => {
     const [editActive, setEditActive] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
     const [width, setWidth] = useState();
     const textRef = useRef(null);
     const containerRef = useRef(null);
@@ -15,14 +16,17 @@ const TaskItem = React.memo(({ title, id }) => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
     }, [containerRef?.current?.offsetWidth]);
     const Delete = () => {
-        deleteTodo({ todoId: id })
-            .then(() => TodosStore.deleteTask(id));
+        setIsDeleted(true)
+        setTimeout(() => deleteTodo({ todoId: id }).then(() => TodosStore.deleteTask(id)), 300);
     }
     const Expand = () => {
         setEditActive((prevState) => !prevState);
     }
     return (
-        <div className='task__item'>
+        <div className={`task__item ${isDeleted
+            ? 'task__item--deleted'
+            : ''
+            }`}>
             <div className='task__item-content' ref={containerRef}>
                 <p className={`task__item-text 
                     ${editActive
@@ -35,9 +39,8 @@ const TaskItem = React.memo(({ title, id }) => {
             </div>
             <div className='task__item-buttons'>
                 {width === 0 ?
-                    <button className={`task__item-btn task__item-btn-edit ' 
-                        ${editActive
-                            ? 'task__item-btn-edit--active'
+                    <button className={`task__item-btn task__item-btn-expand ${editActive
+                            ? 'task__item-btn-expand--active'
                             : ''
                         }`}
                         onClick={Expand}>
