@@ -226,12 +226,14 @@ main {
         border-radius: 30px;
         overflow: hidden;
         animation: slide-in .5s ease;
+
         &:first-child {
             margin-left: 0px;
         }
         &--deleted{
-            transition: transform .5s ease;
-            transform: translateY(-100%);
+            transition: all .5s ease;
+            transform: scale(.7, .7);
+            opacity: 0;
         }
     }
     &__article-header {
@@ -301,8 +303,9 @@ main {
         margin: 10px 0;
         animation: slide-left .5s ease;
         &--deleted{
-            transition: transform .5s ease;
+            transition: all .5s ease;
             transform: translate(100%);
+            opacity: 0;
         }
     }
     &__item-content {
@@ -391,40 +394,36 @@ main {
     }
 
     &__contact-table {
-        background-color: $item-color;
         height: 100%;
         width: 100%;
         border-radius: 20px;
         overflow: hidden;
         animation: slide-in .5s ease;
         margin-top: 20px;
+        background-color: $item-color;
+
     }
 
     &__contact-tbody {
         overflow: hidden;
-
     }
-
-    &__contact-thead {
-        background-color: $block-color;
-        font-weight: 600;
-        border-bottom: 1px $primary-color-dark solid;
-    }
-
     &__contact-row {
+        background-color: $item-color;
         display: flex;
         justify-content: space-between;
         display: grid;
         grid-template-columns: 40px 2fr 1.5fr 1fr 2fr;
-        border-top: 1px $primary-color-dark solid;
-
-        &:first-child {
-            border-top: none;
-        }
+        border-bottom: 1px $primary-color-dark solid;
         &--deleted {
-            transition: transform .5s ease;
-            transform: translate(100%);
+            transition: all .5s ease;
+            transform: translateX(100%);
+            opacity: 0;
         }
+    }
+    &__contact-thead {
+        background-color: $block-color;
+        font-weight: 600;
+        border-bottom: 1px $primary-color-dark solid;
     }
     &__contact-row-delete {
         padding: 10px;
