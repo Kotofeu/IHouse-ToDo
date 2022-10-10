@@ -14,10 +14,10 @@ const TaskArticleList = observer(({ workerId }) => {
     }, [isAdding, TodosStore.todos]);
     useEffect(() => {
         if (isAdding) {
-            lastItem.current.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'end', 
-                inline: 'center' 
+            lastItem.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+                inline: 'center'
             });
             setIsAdding(false);
         }
@@ -27,14 +27,14 @@ const TaskArticleList = observer(({ workerId }) => {
         let isUnique = !(workerTodo.find(item => item.name === newList));
         if (isUnique && newList) {
             createTodo({ name: newList, workerId: workerId })
-                .then(data =>  TodosStore.addTodo(data))
+                .then(data => TodosStore.addTodo(data))
                 .then(() => setIsAdding(true));
             setNewList('');
         }
         else {
-            !newList 
-            ? alert('Введите значение!')
-            : alert('Такой список уже есть!');
+            !newList
+                ? alert('Введите значение!')
+                : alert('Такой список уже есть!');
         }
     }
     return (
@@ -46,23 +46,23 @@ const TaskArticleList = observer(({ workerId }) => {
                 onChange={e => setNewList(e.target.value)}
                 onSubmit={addTaskList}
             />
-            <section
-                className={`task__task-list ${TodosStore.isHorizontal
-                    ? 'task__task-list--horizontal'
-                    : ''
-                    }`}>
-                {!workerTodo.length
-                    ? <h2 className='task__clear'>Нет списков</h2>
-                    : workerTodo.map(item =>
+            {!workerTodo.length
+                ? <h2 className='task__clear'>Нет списков</h2>
+                : <section className={`task__task-list ${TodosStore.isHorizontal
+                        ? 'task__task-list--horizontal'
+                        : ''
+                        }`}>
+                    {workerTodo.map(item =>
                         <TaskArticle
                             key={item.id}
                             item={item}
                             todosId={item.id}
-                        />
-                    )
-                }
-                <div ref={lastItem}></div>
-            </section>
+                        />)}
+                    <div className='task__task-list-last' ref={lastItem}></div>
+                </section>
+                
+            }
+
         </div>
     );
 })

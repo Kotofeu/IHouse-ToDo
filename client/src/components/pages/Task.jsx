@@ -57,7 +57,7 @@ const Task = observer(() => {
                         <Tabs defaultIndex={+TodosStore.defaultWorker}>
                             <TabList className='task__tabs'>
                                 {TodosStore.workers.map(worker =>
-                                    <Tab key={worker.id}
+                                    <Tab className='task__tab' key={worker.id}
                                         onClick={() => setWorker(worker.id)}>
                                         <MyTab>{worker.name}</MyTab>
                                     </Tab>

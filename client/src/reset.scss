@@ -32,13 +32,13 @@ dd {
 
 body {
   background-color: $primary-color-dark;
-  min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: 'Open Sans';
   font-weight: 400;
   color: $text-color;
+  min-height: 100vh;
 }
 
 body,
@@ -77,9 +77,11 @@ h6 {
   color: $title-color;
   font-family: 'Montserrat';
 }
+
 button {
   cursor: pointer;
 }
+
 input,
 button,
 textarea,
@@ -104,10 +106,12 @@ select {
   border-radius: 20px;
 }
 
+
 .react-tabs__tab--selected {
   & button {
     border: 2px solid $link-color;
     background-color: $link-color;
     color: #fff;
+    font-size: 18px !important;
   }
 }

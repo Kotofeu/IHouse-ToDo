@@ -7,13 +7,11 @@
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
     height: 100%;
 }
 
 main {
-    min-height: 100vh;
-    height: 100%;
     background-color: $primary-color-light;
     background: -webkit-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
     background: -moz-linear-gradient(top bottom, $primary-color-light, $primary-color-dark);
@@ -31,7 +29,7 @@ main {
 
     &__inner {
         display: flex;
-        padding: 20px 0px;
+        padding: 10px 0px;
         justify-content: space-between;
         align-items: center;
     }
@@ -89,10 +87,9 @@ main {
 
 .task {
     &__inner {
-        min-height: 100vh;
-        padding: 90px 0 30px;
-        height: 100%;
+        padding: 90px 0 20px;
         overflow-x: hidden;
+        min-height: 100vh;
     }
 
     &__header {
@@ -114,15 +111,9 @@ main {
         background: url('./assets/images/menu.svg') no-repeat center;
         background-size: 80%;
         background-origin: $header-color;
+
         cursor: pointer;
         transition: transform .3s;
-
-        @media (any-hover: hover) {
-            &:hover {
-                transform: rotateZ(45deg);
-            }
-        }
-
 
         &--horizontal {
             transform: rotateZ(90deg);
@@ -130,14 +121,21 @@ main {
     }
 
     &__tabs {
-        margin-top: 6px;
-        margin-bottom: 6px;
         display: flex;
         justify-content: center;
         align-items: center;
-        column-gap: 30px;
-        row-gap: 20px;
+        margin: 6px 0px;
+        gap: 20px;
         flex-wrap: wrap;
+    }
+
+    &__tab {
+        & button {
+            font-size: 0;
+            &:first-letter {
+                font-size: 18px;
+            }
+        }
     }
 
     &__tasks-panel {
@@ -156,34 +154,17 @@ main {
         flex-wrap: wrap;
         // Google Edge FireFox
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr;
+        gap: 20px;
         overflow: hidden;
         transition: all .3s;
 
-        @media (max-width: 1050px) {
-            grid-template-columns: 1fr 1fr;
+        & .task__article {
+            justify-self: center;
 
-            & .task__article {
-                justify-self: end;
-
-                &:nth-child(even) {
-                    justify-self: start;
-                }
-            }
-        }
-
-        @media (max-width: 767px) {
-            grid-template-columns: 1fr;
-
-            & .task__article {
+            &:nth-child(even) {
                 justify-self: center;
-
-                &:nth-child(even) {
-                    justify-self: center;
-                }
             }
-
         }
 
         &--horizontal {
@@ -193,26 +174,25 @@ main {
             height: calc(100vh - 310px);
             min-height: 470px;
             padding-bottom: 10px;
-            gap: 0px;
             flex-wrap: nowrap;
             justify-content: flex-start;
 
             & .task__article {
-                @media (max-width: 400px) {
-                    min-width: 280px;
-                    max-width: 280px;
-                }
-
-                min-width: 360px;
-                max-width: 360px;
+                min-width: 280px;
+                max-width: 280px;
                 max-height: none;
-                margin-left: 30px;
                 height: 100%;
+                &:first-child {
+                    margin-left: 0px;
+                }
             }
         }
 
     }
-
+    &__task-list-last{
+        margin-left: -40px;
+        margin-top: -40px;
+    }
     &__article {
         position: relative;
         max-width: 400px;
@@ -225,17 +205,20 @@ main {
         flex-direction: column;
         border-radius: 30px;
         overflow: hidden;
+
         animation: slide-in .5s ease;
 
         &:first-child {
             margin-left: 0px;
         }
-        &--deleted{
+
+        &--deleted {
             transition: all .5s ease;
             transform: scale(.7, .7);
             opacity: 0;
         }
     }
+
     &__article-header {
         text-align: center;
         padding: 10px;
@@ -271,16 +254,15 @@ main {
     }
 
     &__article-header-input {
-        width: calc(100% - 60px);
-        min-width: calc(100% - 60px);
-        max-width: calc(100% - 60px);
+        width: calc(100% - 50px);
+        min-width: calc(100% - 50px);
+        max-width: calc(100% - 50px);
         min-height: 40px;
         max-height: 100px;
     }
 
     &__article-header-edit {
         max-width: 20%;
-        margin-left: 20px;
     }
 
     &__article-list {
@@ -302,12 +284,14 @@ main {
         background-color: $item-color;
         margin: 10px 0;
         animation: slide-left .5s ease;
-        &--deleted{
+
+        &--deleted {
             transition: all .5s ease;
             transform: translate(100%);
             opacity: 0;
         }
     }
+
     &__item-content {
         margin-right: 5px;
         flex-grow: 1;
@@ -342,20 +326,15 @@ main {
     }
 
     &__item-btn-expand {
-        transition: transform .3s; 
-        &:hover{
-            transform: translateY(10%);
-        }
+        transition: transform .3s;
+
         &--active {
             transform: rotateZ(180deg) translateY(0);
-            &:hover{
-                transform:  rotateZ(180deg) translateY(10%);
-            }
+
         }
     }
 
     &__clear {
-        position: absolute;
         width: 100%;
         font-size: 30px;
         text-align: center;
@@ -377,7 +356,6 @@ main {
     &__inner {
         overflow: hidden;
         padding: 90px 0 30px;
-
     }
 
     &__header {
@@ -407,6 +385,7 @@ main {
     &__contact-tbody {
         overflow: hidden;
     }
+
     &__contact-row {
         background-color: $item-color;
         display: flex;
@@ -414,17 +393,20 @@ main {
         display: grid;
         grid-template-columns: 40px 2fr 1.5fr 1fr 2fr;
         border-bottom: 1px $primary-color-dark solid;
+
         &--deleted {
             transition: all .5s ease;
             transform: translateX(100%);
             opacity: 0;
         }
     }
+
     &__contact-thead {
         background-color: $block-color;
         font-weight: 600;
         border-bottom: 1px $primary-color-dark solid;
     }
+
     &__contact-row-delete {
         padding: 10px;
         align-self: flex-start;
@@ -556,3 +538,5 @@ main {
     margin-bottom: 30px;
     margin-top: 15px;
 }
+
+@import 'media.scss';
