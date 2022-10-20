@@ -59,8 +59,7 @@ const TaskArticleList = observer(({ workerId }) => {
                             todosId={item.id}
                         />)}
                     <div className='task__task-list-last' ref={lastItem}></div>
-                </section>
-                
+                </section>   
             }
 
         </div>

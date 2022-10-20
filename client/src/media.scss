@@ -4,9 +4,16 @@
             padding: 20px 0px;
 
         }
+        &__nav-list {
+            flex-direction: row;
+        }
+    
     }
 
     .task {
+        &__inner {
+            padding: 80px 0 30px;
+        }
         &__task-list {
             gap: 30px;
 
@@ -17,6 +24,22 @@
                 }
             }
         }
+        
+        &__header-orientation-btn {
+            margin-left: 20px;
+        }
+    }
+    .contact {
+        &__inner {
+            padding: 80px 0 30px;
+        }
+
+        &__header-btn {
+            margin-left: 20px;
+            width: 40px;
+            height: 40px;
+            font-size: 50px;
+        }
     }
 }
 
@@ -26,6 +49,8 @@
     }
 
     .task {
+
+
         &__tab {
             & button {
                 font-size: 18px;
@@ -35,7 +60,10 @@
                 }
             }
         }
+
     }
+
+
 }
 
 @media (min-width: 768.98px) {
@@ -49,6 +77,62 @@
                 &:nth-child(even) {
                     justify-self: start;
                 }
+            }
+        }
+
+    }
+
+    .contact__contact-table {
+        margin-top: 10px;
+        width: 100%;
+        padding: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px $primary-color-dark solid;
+
+        & tr {
+            width: 100%;
+            vertical-align: top;
+            text-align: left;
+            display: table-row;
+        }
+
+        & .contact__contact-thead {
+            display: table-header-group;
+            width: 100%;
+        }
+
+        & .contact__contact-item {
+            display: table-cell;
+            padding: 10px;
+            max-width: 100px;
+            padding-top: 5px;
+            &::before {
+                display: none;
+            }
+            &:last-child{
+                border-radius: 0;
+                overflow: hidden;
+            }
+            &:nth-child(2){
+                border-radius: 0;
+                overflow: hidden;
+            }
+        }
+
+        & .contact__contact-item-title {
+            background-color: $block-color;
+        }
+
+        & .contact__contact-row-delete {
+            background-color: $item-color;
+            width: 3%;
+            border: 1px $primary-color-dark solid;
+            & button {
+                display: block;
+                width: 25px;
             }
         }
 
@@ -81,10 +165,12 @@
         &__header-orientation-btn:hover {
             transform: rotateZ(45deg);
         }
+
         &__item-btn-expand {
             &:hover {
                 transform: translateY(10%);
             }
+
             &--active {
                 &:hover {
                     transform: rotateZ(180deg) translateY(10%);

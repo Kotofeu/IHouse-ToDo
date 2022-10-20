@@ -35,11 +35,20 @@ const Task = observer(() => {
         TodosStore.setDefaultWorker(index);
         localStorage.setItem('defaultWorker', index);
     }
-    if (workersError || todosError) {
-        return (<MyError>{[workersError, todosError].join(' ')}</MyError>);
-    }
+
     if (workersLoading || todosLoading) {
         return (<MyLoader />);
+    }
+    if (workersError || todosError) {
+        return (
+            <MyError>
+                {
+                    workersError.message !== todosError.message
+                        ? [workersError, todosError].join(' ')
+                        : workersError
+                }
+            </MyError>
+        );
     }
     return (
         <div className='task'>
@@ -48,8 +57,8 @@ const Task = observer(() => {
                     <header className='task__header'>
                         <MyTitle>Список задач</MyTitle>
                         <button className={`task__header-orientation-btn ${TodosStore.isHorizontal
-                                ? 'task__header-orientation-btn--horizontal'
-                                : ''
+                            ? 'task__header-orientation-btn--horizontal'
+                            : ''
                             }`}
                             onClick={setAlignment} />
                     </header>

@@ -12,24 +12,27 @@ const ContactItem = ({ item }) => {
         setTimeout(() => deleteContact({ id }).then(() => ContactStore.deleteContact(id)), 300);
     }
     return (
-        <li className={`contact__contact-row ${isDeleted
+        <tr className={`contact__contact-row ${isDeleted
             ? 'contact__contact-row--deleted'
             : ''
             }`}>
-            <MyDeleteBtn className='contact__contact-row-delete' onClick={Delete} />
-            <div className='contact__contact-item'>{name}</div>
-            <div className='contact__contact-item'>{info}</div>
-            <div className='contact__contact-item'>
+            <td className='contact__contact-item contact__contact-row-delete'
+                aria-label=" ">
+                <MyDeleteBtn onClick={Delete} />
+            </td>
+            <td className='contact__contact-item' aria-label="ФИО">{name}</td>
+            <td className='contact__contact-item' aria-label="Информация">{info}</td>
+            <td className='contact__contact-item' aria-label="Номер">
                 <a className='contact__contact-phone' href={`tel:${phone}`}>
                     {phone}
                 </a>
-            </div>
-            <div className='contact__contact-item' >
+            </td>
+            <td className='contact__contact-item' aria-label="Почта">
                 <a className='contact__contact-mail' href={`mailto:${email}`}>
                     {email}
                 </a>
-            </div>
-        </li>
+            </td>
+        </tr>
     );
 }
 export default ContactItem;
