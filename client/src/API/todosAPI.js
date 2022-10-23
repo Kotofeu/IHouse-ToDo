@@ -17,3 +17,7 @@ export const fetchTodos = async (workerId) => {
     });
     return data;
 }
+export const updateTodo = async ({ id, name, idTodo, todoTitle }) => {
+    const { data } = await $conection.post('api/todos/update', {id, name, idTodo, todoTitle});
+    return data;
+}

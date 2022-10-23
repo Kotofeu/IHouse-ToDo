@@ -1,57 +1,80 @@
 import React, { useRef } from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { deleteTodo } from '../API/todosAPI';
-//import edit from '../assets/images/edit.svg';
+import { deleteTodo, updateTodo } from '../API/todosAPI';
 import expand from '../assets/images/expand.svg';
 import TodosStore from '../store/TodosStore';
-import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
+import MyDeleteBtn from './UI/MyBtn/MyDeleteBtn/MyDeleteBtn.jsx';
+import MyEditBtn from './UI/MyBtn/MyEditBtn/MyEditBtn.jsx';
+import MySaveBtn from './UI/MyBtn/MySaveBtn/MySaveBtn.jsx';
 const TaskItem = React.memo(({ title, id }) => {
-    const [editActive, setEditActive] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+    const [isExpand, setIsExpand] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const [width, setWidth] = useState();
+    const [todo, setTodo] = useState(title);
     const textRef = useRef(null);
     const containerRef = useRef(null);
     useEffect(() => {
         setWidth((containerRef.current.offsetWidth - textRef.current.offsetWidth));
-    }, [containerRef?.current?.offsetWidth]);
+    }, [containerRef?.current?.offsetWidth, isEdit]);
     const Delete = () => {
-        setIsDeleted(true)
+        setIsDeleted(true);
         setTimeout(() => deleteTodo({ todoId: id }).then(() => TodosStore.deleteTask(id)), 300);
     }
+    const Edit = () => {
+        setIsEdit((prevState) => !prevState);
+        setIsExpand(false);
+    }
+    const Save = (e) => {
+        e.preventDefault();
+        updateTodo({ idTodo: id, todoTitle: todo });
+        setIsEdit(false);
+    }
     const Expand = () => {
-        setEditActive((prevState) => !prevState);
+        setIsExpand((prevState) => !prevState);
     }
     return (
         <div className={`task__item ${isDeleted
             ? 'task__item--deleted'
             : ''
             }`}>
-            <div className='task__item-content' ref={containerRef}>
-                <p className={`task__item-text 
-                    ${editActive
+            <form className='task__item-form' ref={containerRef} onSubmit={Save}>
+                <label
+                    className={`task__item-text ${isExpand
                         ? 'task__item-text--active'
                         : ''
-                    }`}
+                        }`} htmlFor={id}
                     ref={textRef}>
-                    {title}
-                </p>
-            </div>
+                    {todo}
+                </label>
+                <input className={`task__item-input ${isEdit
+                    ? 'task__item-input--active'
+                    : ''
+                    }`}
+                    id={id}
+                    value={todo}
+                    onChange={e => setTodo(e.target.value)}
+                />
+            </form>
             <div className='task__item-buttons'>
-                {width === 0 ?
-                    <button className={`task__item-btn task__item-btn-expand ${editActive
-                            ? 'task__item-btn-expand--active'
-                            : ''
+                {width === 0 && !isEdit
+                    ? <button className={`task__item-btn task__item-btn-expand ${isExpand
+                        ? 'task__item-btn-expand--active'
+                        : ''
                         }`}
                         onClick={Expand}>
                         <img src={expand} alt='expand icon' />
                     </button>
                     : null
                 }
+                {isEdit
+                    ? <MySaveBtn className='task__item-btn'  onClick={Save}/>
+                    : <MyEditBtn className='task__item-btn' onClick={Edit}/>
+                }
                 <MyDeleteBtn className='task__item-btn' onClick={Delete} />
             </div>
         </div>
     );
-    //  <button className='task__item-btn' onClick={Edit}><img src={edit} alt='edit image' /></button>
 })
 export default TaskItem;

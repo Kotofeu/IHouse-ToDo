@@ -1,15 +1,18 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { deleteContact } from '../API/contactsApi';
 import ContactStore from '../store/ContactStore';
-import MyDeleteBtn from './UI/MyDeleteBtn/MyDeleteBtn';
+import MyDeleteBtn from './UI/MyBtn/MyDeleteBtn/MyDeleteBtn';
+import MyEditBtn from './UI/MyBtn/MyEditBtn/MyEditBtn';
 const ContactItem = ({ item }) => {
     const { id, name, info, phone, email } = item;
     const [isDeleted, setIsDeleted] = useState(false);
     const Delete = () => {
         setIsDeleted(true);
         setTimeout(() => deleteContact({ id }).then(() => ContactStore.deleteContact(id)), 300);
+    }
+    const Edit = () => {
+
     }
     return (
         <tr className={`contact__contact-row ${isDeleted
@@ -18,6 +21,7 @@ const ContactItem = ({ item }) => {
             }`}>
             <td className='contact__contact-item contact__contact-row-delete'
                 aria-label=" ">
+                <MyEditBtn onClick={Edit} />
                 <MyDeleteBtn onClick={Delete} />
             </td>
             <td className='contact__contact-item' aria-label="ФИО">{name}</td>

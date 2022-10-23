@@ -3,6 +3,7 @@ const ApiError = require('../error/ApiError');
 
 class todosController {
     async create(req, res, next) {
+
         try {
             let { id, name, workerId, todoTitle } = req.body;
             if (id) {
@@ -76,6 +77,41 @@ class todosController {
                         id: todoId
                     }
                 });
+                return res.json(todo);
+            }
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+
+    }
+    async post(req, res, next) {
+        try {
+            let { id, name, idTodo, todoTitle } = req.body;
+            if (id) {
+                const todosList = await TodosList.update(
+                    {
+                        name: name
+                    },
+                    {
+                        where: {
+                            id: id
+                        }
+                    }
+                );
+                return res.json(todosList);
+            }
+            else {
+                const todo = await TodoItem.update(
+                        {
+                            title: todoTitle
+                        },
+                        {
+                            where: {
+                                id: idTodo
+                            }
+                        }
+                    );
                 return res.json(todo);
             }
         }

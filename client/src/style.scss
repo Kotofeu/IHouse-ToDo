@@ -223,7 +223,7 @@ main {
 
     &__article-header {
         text-align: center;
-        padding: 10px;
+        padding: 10px 15px;
         border-bottom: 2px solid #000;
         background-color: $block-color;
     }
@@ -232,20 +232,54 @@ main {
         display: flex;
         align-items: center;
     }
-
-    &__article-header-title {
+    &__article-title-form{
+        flex-grow: 1;
+        margin-right: 5px;
+        overflow: hidden;
+        display: flex;
+        position: relative;
         font-size: 20px;
+        color: $title-color;
+        font-family: 'Montserrat';
+    }
+    &__article-title-title {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         height: 30px;
-        width: 100%;
         padding-right: 10px;
     }
+    &__article-title-input{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        outline: none;
+        resize: none;
+        display: none;
 
-    &__article-header-delete {
+        &--active {
+            display: block;
+            background-color: $block-color;
+            border: none;
+            border-bottom: 1px solid $primary-color-dark;
+            height: 100%;
+        }
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            border-image: none;
+            -webkit-text-fill-color: #000;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+    &__article-header-btns{
+        display: flex;
+    }
+    &__article-header-btn {
         width: 25px;
         height: 25px;
+        margin-left: 7px;
     }
 
     &__article-header-add {
@@ -286,7 +320,7 @@ main {
         background-color: $item-color;
         margin: 10px 0;
         animation: slide-left .5s ease;
-
+        overflow: hidden;
         &--deleted {
             transition: all .5s ease;
             transform: translate(100%);
@@ -294,11 +328,12 @@ main {
         }
     }
 
-    &__item-content {
+    &__item-form {
         margin-right: 5px;
         flex-grow: 1;
         overflow: hidden;
         display: flex;
+        position: relative;
     }
 
     &__item-text {
@@ -310,6 +345,32 @@ main {
             text-overflow: clip;
             white-space: normal;
             word-break: break-all;
+        }
+    }
+
+    &__item-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        outline: none;
+        resize: none;
+        display: none;
+
+        &--active {
+            display: block;
+            background-color: $item-color;
+            border: none;
+            border-bottom: 1px solid $primary-color-dark;
+            height: 100%;
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            border-image: none;
+            -webkit-text-fill-color: #000;
+            transition: background-color 5000s ease-in-out 0s;
         }
     }
 
@@ -391,7 +452,7 @@ main {
     }
 
     &__contact-row {
-        
+
         display: block;
         margin: 0;
         transition: all .3s ease;
@@ -400,7 +461,8 @@ main {
         &--deleted {
             transform: translateX(100%);
         }
-        &:last-child{
+
+        &:last-child {
             margin-bottom: 0;
         }
 
@@ -419,6 +481,7 @@ main {
         position: relative;
         padding-left: 150px;
         min-height: 40px;
+
         & a:hover {
             text-decoration: underline;
         }
@@ -436,11 +499,13 @@ main {
             padding-left: 10px;
             padding-top: 5px;
         }
-        &:last-child{
+
+        &:last-child {
             border-radius: 0 0 20px 20px;
             overflow: hidden;
         }
-        &:nth-child(2){
+
+        &:nth-child(2) {
             border-radius: 20px 20px 0px 0px;
             overflow: hidden;
         }
@@ -449,11 +514,12 @@ main {
     &__contact-row-delete {
         position: relative;
         background-color: transparent;
-       // z-index: 2;
+        // z-index: 2;
         border: none;
         padding: 0;
         margin-left: 5px;
         margin-bottom: -5px;
+
         & button {
             display: block;
             width: 25px;

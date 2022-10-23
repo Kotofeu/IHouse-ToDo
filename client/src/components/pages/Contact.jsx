@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MyTitle from '../UI/MyTitle/MyTitle.jsx';
-import MyAddBtn from '../UI/MyAddBtn/MyAddBtn.jsx';
+import MyAddBtn from '../UI/MyBtn/MyAddBtn/MyAddBtn.jsx';
 import ContactList from '../ContactList.jsx';
 import ContactStore from '../../store/ContactStore.js';
 import MyLoader from '../UI/MyLoader/MyLoader.jsx';

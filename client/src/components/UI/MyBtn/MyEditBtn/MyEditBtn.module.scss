@@ -1,0 +1,16 @@
+.MyEditBtn{
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    & img{
+        will-change: transform;
+        transition: transform .3s ease;
+    }
+    &:hover {
+        & img {
+            transform: rotateZ(-45deg);
+
+        }
+    }
+}
