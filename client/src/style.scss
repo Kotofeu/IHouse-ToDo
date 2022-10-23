@@ -514,30 +514,26 @@ main {
     &__contact-row-delete {
         position: relative;
         background-color: transparent;
-        // z-index: 2;
         border: none;
         padding: 0;
         margin-left: 5px;
-        margin-bottom: -5px;
-
+        margin-bottom: 5px;
         & button {
             display: block;
             width: 25px;
         }
 
         &::before {
-            position: absolute;
-            content: '';
-            top: -4px;
-            left: -4px;
-            width: 25px;
-            height: 25px;
-            padding: 17px;
-            border-radius: 50%;
-            background-color: $link-color;
+            display: none;
         }
     }
-
+    &__contact-row-delete-btns{
+        display: inline-flex;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 10px;
+        background-color: $link-color;
+    }
     &__contact-item-title {
         font-size: 20px;
         color: $link-color;

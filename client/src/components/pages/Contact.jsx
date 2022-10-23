@@ -10,7 +10,6 @@ import { fetchContacts } from '../../API/contactsApi.js';
 import useRequest from '../../hooks/useRequest.js';
 import { observer } from 'mobx-react-lite';
 const Contact = observer(() => {
-  const [isShowModal, setIsShowModal] = useState(false);
   const [contact, contactLoading, contactError] = useRequest(fetchContacts);
   useEffect(() => {
     document.title = 'Контакты';
@@ -36,14 +35,11 @@ const Contact = observer(() => {
             }
             <MyAddBtn
               className={'contact__header-btn'}
-              onClick={() => setIsShowModal(true)}
+              onClick={() => ContactStore.setIsShowModal(true)}
             />
           </header>
           <ContactList />
-          <CreateContact
-            closeModal={() => setIsShowModal(false)}
-            isShowModal={isShowModal}
-          />
+          <CreateContact/>
         </div>
       </div>
     </div>

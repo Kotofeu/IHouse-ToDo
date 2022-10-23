@@ -21,7 +21,18 @@ class TodosStore {
     setDefaultWorker(defaultWorker) {
         this._defaultWorker = defaultWorker;
     }
-
+    get workers() {
+        return this._workers;
+    }
+    get todos() {
+        return this._todos;
+    }
+    get isHorizontal() {
+        return this._isHorizontal;
+    }
+    get defaultWorker() {
+        return this._defaultWorker;
+    }
     addTodo(newTodo) {
         this._todos.push({ ...newTodo, todo_items: [] });
     }
@@ -44,19 +55,5 @@ class TodosStore {
             };
         });
     }
-
-    get workers() {
-        return this._workers;
-    }
-    get todos() {
-        return this._todos;
-    }
-    get isHorizontal() {
-        return this._isHorizontal;
-    }
-    get defaultWorker() {
-        return this._defaultWorker;
-    }
-
 }
 export default new TodosStore();

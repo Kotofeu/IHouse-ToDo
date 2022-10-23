@@ -47,6 +47,29 @@ class contactController {
             next(ApiError.badRequest(e.message));
         }
     }
+    async update(req, res, next) {
+        try {
+            let { id, name, info, phone, email } = req.body;
+            const сontacts = await Contacts.update(
+                {
+                    name: name,
+                    info: info,
+                    phone: phone,
+                    email: email
+                },
+                {
+                    where: {
+                        id: id
+                    }
+                }
+            );
+            return res.json(сontacts);
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+
+    }
 }
 
 module.exports = new contactController();

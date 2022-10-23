@@ -85,7 +85,7 @@ class todosController {
         }
 
     }
-    async post(req, res, next) {
+    async update(req, res, next) {
         try {
             let { id, name, idTodo, todoTitle } = req.body;
             if (id) {

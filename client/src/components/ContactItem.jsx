@@ -1,18 +1,21 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { useState } from 'react';
 import { deleteContact } from '../API/contactsApi';
 import ContactStore from '../store/ContactStore';
 import MyDeleteBtn from './UI/MyBtn/MyDeleteBtn/MyDeleteBtn';
 import MyEditBtn from './UI/MyBtn/MyEditBtn/MyEditBtn';
-const ContactItem = ({ item }) => {
+const ContactItem = observer(({ item }) => {
     const { id, name, info, phone, email } = item;
     const [isDeleted, setIsDeleted] = useState(false);
     const Delete = () => {
         setIsDeleted(true);
-        setTimeout(() => deleteContact({ id }).then(() => ContactStore.deleteContact(id)), 300);
+        setTimeout(() => deleteContact({ id })
+            .then(() => ContactStore.deleteContact(id)), 300);
     }
     const Edit = () => {
-
+        ContactStore.setIsShowModal(true);
+        ContactStore.setSelectedСontact(id);
     }
     return (
         <tr className={`contact__contact-row ${isDeleted
@@ -21,8 +24,10 @@ const ContactItem = ({ item }) => {
             }`}>
             <td className='contact__contact-item contact__contact-row-delete'
                 aria-label=" ">
-                <MyEditBtn onClick={Edit} />
-                <MyDeleteBtn onClick={Delete} />
+                <div className='contact__contact-row-delete-btns'>
+                    <MyEditBtn onClick={Edit} />
+                    <MyDeleteBtn onClick={Delete} />
+                </div>
             </td>
             <td className='contact__contact-item' aria-label="ФИО">{name}</td>
             <td className='contact__contact-item' aria-label="Информация">{info}</td>
@@ -38,5 +43,5 @@ const ContactItem = ({ item }) => {
             </td>
         </tr>
     );
-}
+});
 export default ContactItem;

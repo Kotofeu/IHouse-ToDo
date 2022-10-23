@@ -14,7 +14,11 @@ export const fetchContacts = async () => {
 }
 
 export const fetchContact = async (id) => {
-    const { data } = await $conection.get('api/contact' + id);
+    const { data } = await $conection.get('api/contact/' + id);
     return data;
 }
 
+export const updateContact = async ({ id, name, info, phone, email }) => {
+    const { data } = await $conection.post('api/contact/update', {id, name, info, phone, email});
+    return data;
+}

@@ -1,58 +1,97 @@
+import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react'
-import { createContact } from '../../API/contactsApi';
+import { useEffect } from 'react';
+import { createContact, fetchContact, updateContact } from '../../API/contactsApi';
 import ContactStore from '../../store/ContactStore';
 
-const CreateContact = ({ closeModal, isShowModal }) => {
+const CreateContact = observer(() => {
   const [person, setPerson] = useState({
-    contact: '',
+    id: null,
+    name: '',
     info: '',
     phone: '',
     email: ''
   });
+  useEffect(() => {
+    if (ContactStore.selectedСontact) {
+      fetchContact(ContactStore.selectedСontact)
+        .then(data => setPerson({
+          id: ContactStore.selectedСontact,
+          name: data.name,
+          info: data.info ? data.info : '',
+          phone: data.phone ? data.phone : '',
+          email: data.email ? data.email : '',
+        }));
+    }
+  }, [ContactStore.selectedСontact]);
+
+  const clearFields = () => {
+    setPerson({
+      id: null,
+      name: '',
+      info: '',
+      phone: '',
+      email: ''
+    });
+  }
   const changePersonInfo = e => {
     setPerson(prev => ({
       ...prev, [e.target.id]: e.target.value
     }));
   }
-  const formInput = e => {
+  const formSave = e => {
     e.preventDefault();
     let contacts = ContactStore.contacts;
-    let isUnique = !(contacts.find(item => item.name === person.contact))
+    let isUnique = !(contacts.find(item => item.name === person.name))
       && (!(contacts.find(item => item.phone === person.phone)) || !person.phone)
       && (!(contacts.find(item => item.email === person.email)) || !person.email);
-    if (isUnique && person.contact) {
+    if (isUnique && person.name) {
       createContact(
         {
-          name: person.contact,
+          name: person.name,
           info: person.info,
           phone: person.phone ? person.phone : null,
           email: person.email ? person.email : null
         })
         .then(data => ContactStore.addContact(data));
-      setPerson({
-        contact: '',
-        info: '',
-        phone: '',
-        email: ''
-      });
-      closeModal();
+      closeModal()
     }
     else {
-      !person.contact
+      !person.name
         ? alert('Введите ФИО!')
         : alert('Такой контакт уже есть!');
     }
   }
+  const formUpdate = e => {
+    updateContact({
+      id: person.id,
+      name: person.name,
+      info: person.info,
+      phone: person.phone ? person.phone : null,
+      email: person.email ? person.email : null
+    }).then(() => ContactStore.updateConctact(person));
+    closeModal();
+  }
+  const closeModal = () => {
+    ContactStore.setIsShowModal(false);
+    const animationDelay = setTimeout(() => {
+      ContactStore.setSelectedСontact(null);
+      clearFields();
+    }, 300);
+  }
+
   return (
-    <div className={`contact__modal ${isShowModal ? 'contact__modal--active' : ''}`}>
+    <div className={`contact__modal ${ContactStore.isShowModal
+      ? 'contact__modal--active'
+      : ''}`}>
       <form className='contact__modal-form' method="POST">
         <h4 className='contact__modal-title'>Добавить контакт</h4>
         <input className="contact__modal-input"
-          value={person.contact}
+          value={person.name}
           onChange={changePersonInfo}
           placeholder='Введите ФИО'
           type='text'
-          id='contact'
+          id='name'
           autoComplete='off'
           required
         />
@@ -81,11 +120,29 @@ const CreateContact = ({ closeModal, isShowModal }) => {
           autoComplete='off'
         />
         <div className="contact__modal-btn-box">
-          <button className="contact__modal-bnt" type='button' onClick={formInput}>Сохранить</button>
-          <button className="contact__modal-bnt" type='button' onClick={closeModal}>Отмена</button>
+          {ContactStore.selectedСontact
+            ? <button
+              className="contact__modal-bnt"
+              type='button'
+              onClick={formUpdate}>
+              Обновить
+            </button>
+            : <button
+              className="contact__modal-bnt"
+              type='button'
+              onClick={formSave}>
+              Сохранить
+            </button>
+          }
+          <button
+            className="contact__modal-bnt"
+            type='button'
+            onClick={closeModal}>
+            Отмена
+          </button>
         </div>
       </form>
     </div>
   );
-}
+});
 export default CreateContact;
