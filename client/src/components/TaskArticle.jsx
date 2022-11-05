@@ -42,8 +42,8 @@ const TaskArticle = React.memo(({ todosId }) => {
     updateTodo({ id: todosId, name: todosTitle });
   }
   return (
-    <article className={`task__article ${isDeleted
-      ? 'task__article--deleted'
+    <article className={`task__article${isDeleted
+      ? ' task__article--deleted'
       : ''
       }`}>
       <header className='task__article-header'>
@@ -54,8 +54,8 @@ const TaskArticle = React.memo(({ todosId }) => {
               htmlFor={todosId}>
               {todosTitle}
             </label>
-            <input className={`task__article-title-input ${isEdit
-              ? 'task__article-title-input--active'
+            <input className={`task__article-title-input${isEdit
+              ? ' task__article-title-input--active'
               : ''
               }`}
               id={todosId}

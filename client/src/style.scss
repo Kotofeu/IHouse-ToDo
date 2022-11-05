@@ -130,7 +130,6 @@ main {
     &__tab {
         & button {
             font-size: 0;
-
             &:first-letter {
                 font-size: 18px;
             }
@@ -156,8 +155,6 @@ main {
         grid-template-columns: 1fr;
         gap: 20px;
         overflow: hidden;
-        transition: all .3s;
-
         & .task__article {
             justify-self: center;
 
@@ -208,16 +205,14 @@ main {
         border-radius: 30px;
         overflow: hidden;
 
-        animation: slide-in .5s ease;
-
+        animation:  fade-in .5s ease;
         &:first-child {
             margin-left: 0px;
         }
 
         &--deleted {
-            transition: all .5s ease;
-            transform: scale(.7, .7);
-            opacity: 0;
+            animation: fade-out .5s ease;
+            
         }
     }
 
@@ -443,7 +438,7 @@ main {
         margin: 10px auto;
         width: 100%;
         animation: slide-in .5s;
-
+    
         & th,
         * td {
             text-align: left;
@@ -457,6 +452,7 @@ main {
         margin: 0;
         transition: all .3s ease;
         margin-bottom: 15px;
+        position: relative;
 
         &--deleted {
             transform: translateX(100%);

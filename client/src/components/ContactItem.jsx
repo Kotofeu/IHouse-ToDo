@@ -18,8 +18,8 @@ const ContactItem = observer(({ item }) => {
         ContactStore.setSelectedСontact(id);
     }
     return (
-        <tr className={`contact__contact-row ${isDeleted
-            ? 'contact__contact-row--deleted'
+        <tr className={`contact__contact-row${isDeleted
+            ? ' contact__contact-row--deleted'
             : ''
             }`}>
             <td className='contact__contact-item contact__contact-row-delete'

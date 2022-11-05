@@ -48,8 +48,8 @@ const TaskArticleList = observer(({ workerId }) => {
             />
             {!workerTodo.length
                 ? <h2 className='task__clear'>Нет списков</h2>
-                : <section className={`task__task-list ${TodosStore.isHorizontal
-                        ? 'task__task-list--horizontal'
+                : <section className={`task__task-list${TodosStore.isHorizontal
+                        ? ' task__task-list--horizontal'
                         : ''
                         }`}>
                     {workerTodo.map(item =>

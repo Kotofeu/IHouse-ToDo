@@ -35,21 +35,21 @@ const TaskItem = React.memo(({ title, id }) => {
         setIsExpand((prevState) => !prevState);
     }
     return (
-        <div className={`task__item ${isDeleted
-            ? 'task__item--deleted'
+        <div className={`task__item${isDeleted
+            ? ' task__item--deleted'
             : ''
-            }`}>
+            }`}> 
             <form className='task__item-form' ref={containerRef} onSubmit={Save}>
                 <label
-                    className={`task__item-text ${isExpand
-                        ? 'task__item-text--active'
+                    className={`task__item-text${isExpand
+                        ? ' task__item-text--active'
                         : ''
                         }`} htmlFor={id}
                     ref={textRef}>
                     {todo}
                 </label>
-                <input className={`task__item-input ${isEdit
-                    ? 'task__item-input--active'
+                <input className={`task__item-input${isEdit
+                    ? ' task__item-input--active'
                     : ''
                     }`}
                     id={id}
@@ -59,8 +59,8 @@ const TaskItem = React.memo(({ title, id }) => {
             </form>
             <div className='task__item-buttons'>
                 {width === 0 && !isEdit
-                    ? <button className={`task__item-btn task__item-btn-expand ${isExpand
-                        ? 'task__item-btn-expand--active'
+                    ? <button className={`task__item-btn task__item-btn-expand${isExpand
+                        ? ' task__item-btn-expand--active'
                         : ''
                         }`}
                         onClick={Expand}>
