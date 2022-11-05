@@ -4,16 +4,18 @@
             padding: 20px 0px;
 
         }
+
         &__nav-list {
             flex-direction: row;
         }
-    
+
     }
 
     .task {
         &__inner {
             padding: 80px 0 30px;
         }
+
         &__task-list {
             gap: 30px;
 
@@ -24,11 +26,12 @@
                 }
             }
         }
-        
+
         &__header-orientation-btn {
             margin-left: 20px;
         }
     }
+
     .contact {
         &__inner {
             padding: 80px 0 30px;
@@ -109,14 +112,17 @@
             padding: 10px;
             max-width: 100px;
             padding-top: 5px;
+
             &::before {
                 display: none;
             }
-            &:last-child{
+
+            &:last-child {
                 border-radius: 0;
                 overflow: hidden;
             }
-            &:nth-child(2){
+
+            &:nth-child(2) {
                 border-radius: 0;
                 overflow: hidden;
             }
@@ -130,12 +136,14 @@
             background-color: $item-color;
             width: 3%;
             border: 1px $primary-color-dark solid;
+
             & button {
                 display: block;
                 width: 25px;
             }
         }
-        & .contact__contact-row-delete-btns{
+
+        & .contact__contact-row-delete-btns {
             border: none;
             background-color: transparent;
             padding: 0;

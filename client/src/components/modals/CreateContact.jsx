@@ -54,7 +54,7 @@ const CreateContact = observer(() => {
           email: person.email ? person.email : null
         })
         .then(data => ContactStore.addContact(data));
-      closeModal()
+      closeModal();
     }
     else {
       !person.name
@@ -62,7 +62,7 @@ const CreateContact = observer(() => {
         : alert('Такой контакт уже есть!');
     }
   }
-  const formUpdate = e => {
+  const formUpdate = () => {
     updateContact({
       id: person.id,
       name: person.name,
@@ -84,9 +84,9 @@ const CreateContact = observer(() => {
     <div className={`contact__modal ${ContactStore.isShowModal
       ? 'contact__modal--active'
       : ''}`}>
-      <form className='contact__modal-form' method="POST">
+      <form className='contact__modal-form' method='POST'>
         <h4 className='contact__modal-title'>Добавить контакт</h4>
-        <input className="contact__modal-input"
+        <input className='contact__modal-input'
           value={person.name}
           onChange={changePersonInfo}
           placeholder='Введите ФИО'
@@ -95,7 +95,7 @@ const CreateContact = observer(() => {
           autoComplete='off'
           required
         />
-        <input className="contact__modal-input"
+        <input className='contact__modal-input'
           value={person.info}
           onChange={changePersonInfo}
           placeholder='Введите информацию'
@@ -103,7 +103,7 @@ const CreateContact = observer(() => {
           id='info'
           autoComplete='off'
         />
-        <input className="contact__modal-input"
+        <input className='contact__modal-input'
           value={person.phone}
           onChange={changePersonInfo}
           placeholder='Введите телефон'
@@ -111,7 +111,7 @@ const CreateContact = observer(() => {
           id='phone'
           autoComplete='off'
         />
-        <input className="contact__modal-input"
+        <input className='contact__modal-input'
           value={person.email}
           onChange={changePersonInfo}
           placeholder='Введите почту'
@@ -119,23 +119,23 @@ const CreateContact = observer(() => {
           id='email'
           autoComplete='off'
         />
-        <div className="contact__modal-btn-box">
+        <div className='contact__modal-btn-box'>
           {ContactStore.selectedСontact
             ? <button
-              className="contact__modal-bnt"
+              className='contact__modal-bnt'
               type='button'
               onClick={formUpdate}>
               Обновить
             </button>
             : <button
-              className="contact__modal-bnt"
+              className='contact__modal-bnt'
               type='button'
               onClick={formSave}>
               Сохранить
             </button>
           }
           <button
-            className="contact__modal-bnt"
+            className='contact__modal-bnt'
             type='button'
             onClick={closeModal}>
             Отмена

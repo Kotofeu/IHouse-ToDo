@@ -5,7 +5,7 @@ const MyDeleteBtn = ({ className, onClick }) => {
   const rootClasses = [classes.MyDeleteBtn, className];
   return (
     <button className={rootClasses.join(' ')} type='button' onClick={onClick}>
-      <img src={deleteIcon} alt="delete icon" />
+      <img src={deleteIcon} alt='delete' />
     </button>
   );
 }

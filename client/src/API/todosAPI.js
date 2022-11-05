@@ -5,7 +5,7 @@ export const createTodo = async ({ id, name, workerId, todoTitle }) => {
     return data;
 }
 export const deleteTodo = async ({ id, todoId }) => {
-    const { data } = await $conection.delete('api/todos', {data: {id, todoId}});
+    const { data } = await $conection.delete('api/todos', { data: { id, todoId } });
     return data;
 }
 
@@ -18,6 +18,6 @@ export const fetchTodos = async (workerId) => {
     return data;
 }
 export const updateTodo = async ({ id, name, idTodo, todoTitle }) => {
-    const { data } = await $conection.post('api/todos/update', {id, name, idTodo, todoTitle});
+    const { data } = await $conection.post('api/todos/update', { id, name, idTodo, todoTitle });
     return data;
 }

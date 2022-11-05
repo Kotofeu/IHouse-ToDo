@@ -5,9 +5,9 @@ const MyEditBtn = ({ className, onClick }) => {
     const rootClasses = [classes.MyEditBtn, className];
     return (
         <button className={rootClasses.join(' ')} type='button' onClick={onClick}>
-            <img src={editBtn} alt='edit image' />
+            <img src={editBtn} alt='edit' />
         </button>
-    )
+    );
 }
 
 export default MyEditBtn

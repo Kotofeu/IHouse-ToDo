@@ -1,12 +1,14 @@
-.MyDeleteBtn{
+.MyDeleteBtn {
     background-color: transparent;
     cursor: pointer;
     border: 0;
     padding: 0;
-    & img{
+
+    & img {
         will-change: transform;
         transition: transform .5s ease;
     }
+
     &:hover {
         & img {
             transform: rotateY(180deg) scale(1.2, 1.2);

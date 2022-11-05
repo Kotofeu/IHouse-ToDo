@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './MyError.module.scss';
-const MyError = ({children}) => {
-    
+const MyError = ({ children }) => {
+
   return (
     <h2 className={classes.MyError}>{children.toString()}</h2>
   );

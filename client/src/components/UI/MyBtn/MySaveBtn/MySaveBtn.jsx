@@ -5,9 +5,9 @@ const MySaveBtn = ({ className, onClick }) => {
     const rootClasses = [classes.MySaveBtn, className];
     return (
         <button className={rootClasses.join(' ')} type='button' onClick={onClick}>
-            <img src={editBtn} alt='save image' />
+            <img src={editBtn} alt='save' />
         </button>
-    )
+    );
 }
 
 export default MySaveBtn

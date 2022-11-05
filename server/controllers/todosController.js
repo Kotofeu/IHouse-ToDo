@@ -103,15 +103,15 @@ class todosController {
             }
             else {
                 const todo = await TodoItem.update(
-                        {
-                            title: todoTitle
-                        },
-                        {
-                            where: {
-                                id: idTodo
-                            }
+                    {
+                        title: todoTitle
+                    },
+                    {
+                        where: {
+                            id: idTodo
                         }
-                    );
+                    }
+                );
                 return res.json(todo);
             }
         }

@@ -1,6 +1,7 @@
-.MyTitle{
+.MyTitle {
     font-size: 25px;
     text-align: center;
+
     @media (min-width: 480.98px) {
         & {
             font-size: 30px;

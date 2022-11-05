@@ -1,7 +1,9 @@
 $tab-color: #53742A;
 $tab-color-active: #6c9737;
+
 .MyTab {
-    border: 2px solid $tab-color;;
+    border: 2px solid $tab-color;
+    ;
     background-color: $tab-color;
     color: #222629;
     font-weight: 600;
@@ -11,6 +13,7 @@ $tab-color-active: #6c9737;
     padding: 8px 22px;
     cursor: pointer;
     transition: .3s;
+
     &:hover {
         border: 2px solid $tab-color-active;
         background-color: $tab-color-active;

@@ -23,20 +23,20 @@ const ContactItem = observer(({ item }) => {
             : ''
             }`}>
             <td className='contact__contact-item contact__contact-row-delete'
-                aria-label=" ">
+                aria-label=' '>
                 <div className='contact__contact-row-delete-btns'>
                     <MyEditBtn onClick={Edit} />
                     <MyDeleteBtn onClick={Delete} />
                 </div>
             </td>
-            <td className='contact__contact-item' aria-label="ФИО">{name}</td>
-            <td className='contact__contact-item' aria-label="Информация">{info}</td>
-            <td className='contact__contact-item' aria-label="Номер">
+            <td className='contact__contact-item' aria-label='ФИО'>{name}</td>
+            <td className='contact__contact-item' aria-label='Информация'>{info}</td>
+            <td className='contact__contact-item' aria-label='Номер'>
                 <a className='contact__contact-phone' href={`tel:${phone}`}>
                     {phone}
                 </a>
             </td>
-            <td className='contact__contact-item' aria-label="Почта">
+            <td className='contact__contact-item' aria-label='Почта'>
                 <a className='contact__contact-mail' href={`mailto:${email}`}>
                     {email}
                 </a>

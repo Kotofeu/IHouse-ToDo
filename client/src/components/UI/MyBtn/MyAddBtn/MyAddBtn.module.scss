@@ -1,5 +1,6 @@
 $add-btn-color: #618930;
 $add-btn-color-hover: #87C232;
+
 .MyAddBtn {
     position: relative;
     z-index: 2;
@@ -32,6 +33,7 @@ $add-btn-color-hover: #87C232;
 
     &:hover {
         color: $add-btn-color-hover;
+
         &::after {
             transform: scale(1.1, 1.1);
             border: 2px solid $add-btn-color-hover;

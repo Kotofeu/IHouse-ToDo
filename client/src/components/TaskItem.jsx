@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { deleteTodo, updateTodo } from '../API/todosAPI';
@@ -38,7 +38,7 @@ const TaskItem = React.memo(({ title, id }) => {
         <div className={`task__item${isDeleted
             ? ' task__item--deleted'
             : ''
-            }`}> 
+            }`}>
             <form className='task__item-form' ref={containerRef} onSubmit={Save}>
                 <label
                     className={`task__item-text${isExpand
@@ -69,8 +69,8 @@ const TaskItem = React.memo(({ title, id }) => {
                     : null
                 }
                 {isEdit
-                    ? <MySaveBtn className='task__item-btn'  onClick={Save}/>
-                    : <MyEditBtn className='task__item-btn' onClick={Edit}/>
+                    ? <MySaveBtn className='task__item-btn' onClick={Save} />
+                    : <MyEditBtn className='task__item-btn' onClick={Edit} />
                 }
                 <MyDeleteBtn className='task__item-btn' onClick={Delete} />
             </div>

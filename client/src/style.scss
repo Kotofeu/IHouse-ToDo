@@ -130,6 +130,7 @@ main {
     &__tab {
         & button {
             font-size: 0;
+
             &:first-letter {
                 font-size: 18px;
             }
@@ -155,6 +156,7 @@ main {
         grid-template-columns: 1fr;
         gap: 20px;
         overflow: hidden;
+
         & .task__article {
             justify-self: center;
 
@@ -205,14 +207,15 @@ main {
         border-radius: 30px;
         overflow: hidden;
 
-        animation:  fade-in .5s ease;
+        animation: fade-in .5s ease;
+
         &:first-child {
             margin-left: 0px;
         }
 
         &--deleted {
             animation: fade-out .5s ease;
-            
+
         }
     }
 
@@ -227,7 +230,8 @@ main {
         display: flex;
         align-items: center;
     }
-    &__article-title-form{
+
+    &__article-title-form {
         flex-grow: 1;
         margin-right: 5px;
         overflow: hidden;
@@ -237,6 +241,7 @@ main {
         color: $title-color;
         font-family: 'Montserrat';
     }
+
     &__article-title-title {
         white-space: nowrap;
         overflow: hidden;
@@ -244,7 +249,8 @@ main {
         height: 30px;
         padding-right: 10px;
     }
-    &__article-title-input{
+
+    &__article-title-input {
         position: absolute;
         top: 0;
         left: 0;
@@ -260,6 +266,7 @@ main {
             border-bottom: 1px solid $primary-color-dark;
             height: 100%;
         }
+
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus {
@@ -268,9 +275,11 @@ main {
             transition: background-color 5000s ease-in-out 0s;
         }
     }
-    &__article-header-btns{
+
+    &__article-header-btns {
         display: flex;
     }
+
     &__article-header-btn {
         width: 25px;
         height: 25px;
@@ -316,6 +325,7 @@ main {
         margin: 10px 0;
         animation: slide-left .5s ease;
         overflow: hidden;
+
         &--deleted {
             transition: all .5s ease;
             transform: translate(100%);
@@ -438,7 +448,7 @@ main {
         margin: 10px auto;
         width: 100%;
         animation: slide-in .5s;
-    
+
         & th,
         * td {
             text-align: left;
@@ -514,6 +524,7 @@ main {
         padding: 0;
         margin-left: 5px;
         margin-bottom: 5px;
+
         & button {
             display: block;
             width: 25px;
@@ -523,13 +534,15 @@ main {
             display: none;
         }
     }
-    &__contact-row-delete-btns{
+
+    &__contact-row-delete-btns {
         display: inline-flex;
         gap: 8px;
         border-radius: 20px;
         padding: 10px;
         background-color: $link-color;
     }
+
     &__contact-item-title {
         font-size: 20px;
         color: $link-color;

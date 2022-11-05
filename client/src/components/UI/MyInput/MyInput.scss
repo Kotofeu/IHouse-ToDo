@@ -2,6 +2,7 @@ $primary: #fff;
 $secondary: #fff;
 $gray: #6A6E70;
 $text-color: #F0F0F0;
+
 .input-form {
     position: relative;
     padding: 11px 0 0;
@@ -22,6 +23,7 @@ $text-color: #F0F0F0;
     &::placeholder {
         color: transparent;
     }
+
     &:placeholder-shown~.input-form__label {
         font-size: 20px;
         cursor: text;
@@ -47,7 +49,8 @@ $text-color: #F0F0F0;
     background: none;
     border: none;
     padding: 10px;
-    cursor:auto;
+    cursor: auto;
+
     & img {
         opacity: .5;
         transition: transform .3s;
@@ -76,7 +79,7 @@ $text-color: #F0F0F0;
     ~.input-form__button img {
         transform: scaleX(-1);
         opacity: 1;
-        
+
 
     }
 
