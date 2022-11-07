@@ -30,8 +30,7 @@ const Task = observer(() => {
         TodosStore.setIsHorizontal(!TodosStore.isHorizontal);
         localStorage.setItem('isHorizontal', TodosStore.isHorizontal ? 'True' : '');
     }
-    const setWorker = (id) => {
-        let index = --id
+    const setWorker = (index) => {
         TodosStore.setDefaultWorker(index);
         localStorage.setItem('defaultWorker', index);
     }
@@ -65,9 +64,9 @@ const Task = observer(() => {
                     {TodosStore.workers.length ?
                         <Tabs defaultIndex={+TodosStore.defaultWorker}>
                             <TabList className='task__tabs'>
-                                {TodosStore.workers.map(worker =>
+                                {TodosStore.workers.map((worker, index) =>
                                     <Tab className='task__tab' key={worker.id}
-                                        onClick={() => setWorker(worker.id)}>
+                                        onClick={() => setWorker(index)}>
                                         <MyTab>{worker.name}</MyTab>
                                     </Tab>
                                 )}
